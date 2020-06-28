@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct UchicockStyle{
-    static var no = "0"
+    static var theme = ThemeColorType.tequilaSunriseLight
     static var keyboardAppearance = UIKeyboardAppearance.dark
     static var isBackgroundDark = false
     static var messageHudStyle: MessageHUDStyle = .dark
@@ -35,8 +35,7 @@ struct UchicockStyle{
     static var noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
 
     // MARK: - Define Theme
-    static func tequilaSunriseLight(){
-        no = "0"
+    private static func tequilaSunriseLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -65,8 +64,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
-    static func tequilaSunriseDark(){
-        no = "1"
+    private static func tequilaSunriseDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .dark
@@ -95,8 +93,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
-    static func seaBreezeLight(){
-        no = "2"
+    private static func seaBreezeLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -125,8 +122,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.84, green:0.80, blue:0.82, alpha:1.0)
     }
     
-    static func seaBreezeDark(){
-        no = "3"
+    private static func seaBreezeDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -151,8 +147,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
 
-    static func chinaBlueLight(){
-        no = "4"
+    private static func chinaBlueLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -177,8 +172,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
 
-    static func chinaBlueDark(){
-        no = "5"
+    private static func chinaBlueDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -203,8 +197,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
 
-    static func grasshopperLight(){
-        no = "6"
+    private static func grasshopperLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -229,8 +222,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
 
-    static func irishCoffeeDark(){
-        no = "7"
+    private static func irishCoffeeDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -255,8 +247,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
-    static func mojitoLight(){
-        no = "8"
+    private static func mojitoLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -285,8 +276,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
-    static func redEyeLight(){
-        no = "9"
+    private static func redEyeLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -311,8 +301,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
-    static func cubaLibreDark(){
-        no = "10"
+    private static func cubaLibreDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -341,8 +330,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
-    static func silverWingLight(){
-        no = "11"
+    private static func silverWingLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -367,8 +355,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.70, green:0.72, blue:0.72, alpha:1.0)
     }
     
-    static func americanLemonadeDark(){
-        no = "12"
+    private static func americanLemonadeDark(){
         keyboardAppearance = .light
         isBackgroundDark = true
         messageHudStyle = .light
@@ -393,8 +380,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
-    static func blueLagoonLight(){
-        no = "13"
+    private static func blueLagoonLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .light
@@ -419,8 +405,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
-    static func blueLagoonDark(){
-        no = "14"
+    private static func blueLagoonDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -445,8 +430,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
     
-    static func mimosaLight(){
-        no = "15"
+    private static func mimosaLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .light
@@ -471,8 +455,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
-    static func mimosaDark(){
-        no = "16"
+    private static func mimosaDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -497,8 +480,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
 
-    static func pinkLadyLight(){
-        no = "17"
+    private static func pinkLadyLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .light
@@ -523,8 +505,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.84, green:0.80, blue:0.82, alpha:1.0)
     }
     
-    static func pinkLadyDark(){
-        no = "18"
+    private static func pinkLadyDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -549,8 +530,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
     
-    static func blackRussianDark(){
-        no = "19"
+    private static func blackRussianDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -575,8 +555,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
     
-    static func shoyoJulingLight(){
-        no = "20"
+    private static func shoyoJulingLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .light
@@ -601,8 +580,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
-    static func shoyoJulingDark(){
-        no = "21"
+    private static func shoyoJulingDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -627,8 +605,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
     
-    static func unionJackLight(){
-        no = "22"
+    private static func unionJackLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -657,8 +634,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
 
-    static func unionJackDark(){
-        no = "23"
+    private static func unionJackDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -683,8 +659,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
 
-    static func blueMoonLight(){
-        no = "24"
+    private static func blueMoonLight(){
         keyboardAppearance = .light
         isBackgroundDark = false
         messageHudStyle = .dark
@@ -713,8 +688,7 @@ struct UchicockStyle{
         noPhotoColor = UIColor(red:0.76, green:0.80, blue:0.85, alpha:1.0)
     }
     
-    static func bloodyMaryDark(){
-        no = "25"
+    private static func bloodyMaryDark(){
         keyboardAppearance = .dark
         isBackgroundDark = true
         messageHudStyle = .light
@@ -740,9 +714,9 @@ struct UchicockStyle{
     }
 
     // MARK: - Manage Theme
-    static func saveTheme(themeNo: String){
+    static func saveTheme(themeNo: Int){
         let defaults = UserDefaults.standard
-        defaults.set(themeNo, forKey: GlobalConstants.ColorThemeKey)
+        defaults.set(String(themeNo), forKey: GlobalConstants.ColorThemeKey)
     }
     
     static func loadTheme(){
@@ -756,34 +730,34 @@ struct UchicockStyle{
     }
     
     static func setTheme(themeNo: String){
-        switch themeNo{
-        case "0": tequilaSunriseLight()
-        case "1": tequilaSunriseDark()
-        case "2": seaBreezeLight()
-        case "3": seaBreezeDark()
-        case "4": chinaBlueLight()
-        case "5": chinaBlueDark()
-        case "6": grasshopperLight()
-        case "7": irishCoffeeDark()
-        case "8": mojitoLight()
-        case "9": redEyeLight()
-        case "10": cubaLibreDark()
-        case "11": silverWingLight()
-        case "12": americanLemonadeDark()
-        case "13": blueLagoonLight()
-        case "14": blueLagoonDark()
-        case "15": mimosaLight()
-        case "16": mimosaDark()
-        case "17": pinkLadyLight()
-        case "18": pinkLadyDark()
-        case "19": blackRussianDark()
-        case "20": shoyoJulingLight()
-        case "21": shoyoJulingDark()
-        case "22": unionJackLight()
-        case "23": unionJackDark()
-        case "24": blueMoonLight()
-        case "25": bloodyMaryDark()
-        default: mimosaDark()
+        theme = ThemeColorType.fromString(themeNo)
+        switch theme{
+        case .tequilaSunriseLight: tequilaSunriseLight()
+        case .tequilaSunriseDark: tequilaSunriseDark()
+        case .seaBreezeLight: seaBreezeLight()
+        case .seaBreezeDark: seaBreezeDark()
+        case .chinaBlueLight: chinaBlueLight()
+        case .chinaBlueDark: chinaBlueDark()
+        case .grasshopperLight: grasshopperLight()
+        case .irishCoffeeDark: irishCoffeeDark()
+        case .mojitoLight: mojitoLight()
+        case .redEyeLight: redEyeLight()
+        case .cubaLibreDark: cubaLibreDark()
+        case .silverWingLight: silverWingLight()
+        case .americanLemonadeDark: americanLemonadeDark()
+        case .blueLagoonLight: blueLagoonLight()
+        case .blueLagoonDark: blueLagoonDark()
+        case .mimosaLight: mimosaLight()
+        case .mimosaDark: mimosaDark()
+        case .pinkLadyLight: pinkLadyLight()
+        case .pinkLadyDark: pinkLadyDark()
+        case .blackRussianDark: blackRussianDark()
+        case .shoyoJulingLight: shoyoJulingLight()
+        case .shoyoJulingDark: shoyoJulingDark()
+        case .unionJackLight: unionJackLight()
+        case .unionJackDark: unionJackDark()
+        case .blueMoonLight: blueMoonLight()
+        case .bloodyMaryDark: bloodyMaryDark()
         }
         setGlobalTheme()
     }

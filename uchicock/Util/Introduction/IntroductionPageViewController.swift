@@ -32,36 +32,36 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch UchicockStyle.no{
-        case "0":
+        switch UchicockStyle.theme{
+        case .tequilaSunriseLight:
             backgroundImage = UIImage(named:"background-tequila-sunrise")
             isTextColorBlack = false
             isPageControlBlack = false
-        case "7":
+        case .irishCoffeeDark:
             backgroundImage = UIImage(named:"background-irish-coffee")
             isTextColorBlack = false
             isPageControlBlack = false
-        case "8":
+        case .mojitoLight:
             backgroundImage = UIImage(named:"background-mojito")
             isTextColorBlack = true
             isPageControlBlack = true
-        case "9":
+        case .redEyeLight:
             backgroundImage = UIImage(named:"background-red-eye")
             isTextColorBlack = true
             isPageControlBlack = false
-        case "12":
+        case .americanLemonadeDark:
             backgroundImage = UIImage(named:"background-american-lemonade")
             isTextColorBlack = false
             isPageControlBlack = true
-        case "17":
+        case .pinkLadyLight:
             backgroundImage = UIImage(named:"background-pink-lady")
             isTextColorBlack = true
             isPageControlBlack = false
-        case "1","3","5","10":
+        case .tequilaSunriseDark, .seaBreezeDark, .chinaBlueDark, .cubaLibreDark:
             backgroundImage = getUIImage(from: UchicockStyle.basicBackgroundColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.basicBackgroundColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.basicBackgroundColor)
-        case "13","15","20","22":
+        case .blueLagoonLight, .mimosaLight, .shoyoJulingLight, .unionJackLight:
             backgroundImage = getUIImage(from: UchicockStyle.primaryColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.primaryColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.primaryColor)
@@ -70,7 +70,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.navigationBarColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.navigationBarColor)
         }
-        if ["2","10"].contains(UchicockStyle.no) {
+        if [.seaBreezeLight, .cubaLibreDark].contains(UchicockStyle.theme){
             isTextColorBlack = false
             isPageControlBlack = false
         }

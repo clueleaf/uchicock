@@ -214,48 +214,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         let sortPrimary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortPrimaryKey)
         let sortSecondary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortSecondaryKey)
-        
-        switch (sortPrimary, sortSecondary) {
-        case let (primary, _) where primary == 1: sortOrder = .name
-        case let (primary, secondary) where primary == 2 && secondary == 1: sortOrder = .makeableName
-        case let (primary, secondary) where primary == 2 && secondary == 3: sortOrder = .makeableMadenumName
-        case let (primary, secondary) where primary == 2 && secondary == 4: sortOrder = .makeableFavoriteName
-        case let (primary, secondary) where primary == 2 && secondary == 5: sortOrder = .makeableViewdName
-        case let (primary, _) where primary == 2: sortOrder = .makeableName
-        case let (primary, secondary) where primary == 3 && secondary == 1: sortOrder = .madenumName
-        case let (primary, secondary) where primary == 3 && secondary == 2: sortOrder = .madenumMakeableName
-        case let (primary, secondary) where primary == 3 && secondary == 4: sortOrder = .madenumFavoriteName
-        case let (primary, secondary) where primary == 3 && secondary == 5: sortOrder = .madenumViewedName
-        case let (primary, _) where primary == 3: sortOrder = .madenumName
-        case let (primary, secondary) where primary == 4 && secondary == 1: sortOrder = .favoriteName
-        case let (primary, secondary) where primary == 4 && secondary == 2: sortOrder = .favoriteMakeableName
-        case let (primary, secondary) where primary == 4 && secondary == 3: sortOrder = .favoriteMadenumName
-        case let (primary, secondary) where primary == 4 && secondary == 5: sortOrder = .favoriteViewedName
-        case let (primary, _) where primary == 4: sortOrder = .favoriteName
-        case let (primary, _) where primary == 5: sortOrder = .viewedName
-        default: sortOrder = .name
-        }
+        sortOrder = RecipeSortType.from(primary: sortPrimary, secondary: sortSecondary)
     }
     
     private func setSearchConditionButtonTitle(){
-        var conditionText = ""
-        
-        switch sortOrder{
-        case .name: conditionText = "名前順"
-        case .makeableName: conditionText = "作れる順 > 名前順"
-        case .makeableMadenumName: conditionText = "作れる順 > 作った回数順"
-        case .makeableFavoriteName: conditionText = "作れる順 > お気に入り順"
-        case .makeableViewdName: conditionText = "作れる順 > 最近見た順"
-        case .madenumName: conditionText = "作った回数順 > 名前順"
-        case .madenumMakeableName: conditionText = "作った回数順 > 作れる順"
-        case .madenumFavoriteName: conditionText = "作った回数順 > お気に入り順"
-        case .madenumViewedName: conditionText = "作った回数順 > 最近見た順"
-        case .favoriteName: conditionText = "お気に入り順 > 名前順"
-        case .favoriteMakeableName: conditionText = "お気に入り順 > 作れる順"
-        case .favoriteMadenumName: conditionText = "お気に入り順 > 作った回数順"
-        case .favoriteViewedName: conditionText = "お気に入り順 > 最近見た順"
-        case .viewedName: conditionText = "最近見た順"
-        }
+        var conditionText = sortOrder.rawValue
         
         if ([0,1,2,3].allSatisfy(recipeFilterStar.contains) && [0,1,2,3].allSatisfy(recipeFilterStyle.contains) &&
             [0,1,2,3,4].allSatisfy(recipeFilterMethod.contains) && [0,1,2,3,4].allSatisfy(recipeFilterStrength.contains))

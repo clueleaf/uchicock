@@ -156,19 +156,19 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         
         if ceil(alcoholPercentage) == 0{
             alcoholPercentageLabel.text = "0"
-            alcoholStrengthLabel.text = "ノンアルコール"
+            alcoholStrengthLabel.text = RecipeStrengthType.nonAlcohol.rawValue
         }else if alcoholPercentage < 1.0{
             alcoholPercentageLabel.text = "<1"
-            alcoholStrengthLabel.text = "ノンアルコール"
+            alcoholStrengthLabel.text = RecipeStrengthType.nonAlcohol.rawValue
         }else{
             let flooredAlcoholPercentage = Int(floor(alcoholPercentage))
             alcoholPercentageLabel.text = String(flooredAlcoholPercentage)
             if flooredAlcoholPercentage < 10 {
-                alcoholStrengthLabel.text = "弱い"
+                alcoholStrengthLabel.text = RecipeStrengthType.weak.rawValue
             }else if flooredAlcoholPercentage < 25 {
-                alcoholStrengthLabel.text = "やや強い"
+                alcoholStrengthLabel.text = RecipeStrengthType.medium.rawValue
             }else{
-                alcoholStrengthLabel.text = "強い"
+                alcoholStrengthLabel.text = RecipeStrengthType.strong.rawValue
             }
         }
     }

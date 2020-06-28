@@ -50,29 +50,9 @@ class RecoverPreviewTableViewController: UITableViewController {
             recipeNameYomiLabel.text = recipe.recipeNameYomi
         }
 
-        switch recipe.style{
-        case 0: styleLabel.text = "ロング"
-        case 1: styleLabel.text = "ショート"
-        case 2: styleLabel.text = "ホット"
-        case 3: styleLabel.text = "未指定"
-        default: styleLabel.text = "未指定"
-        }
-        switch recipe.method{
-        case 0: methodLabel.text = "ビルド"
-        case 1: methodLabel.text = "ステア"
-        case 2: methodLabel.text = "シェイク"
-        case 3: methodLabel.text = "ブレンド"
-        case 4: methodLabel.text = "その他"
-        default: methodLabel.text = "その他"
-        }
-        switch recipe.strength{
-        case 0: strengthLabel.text = "ノンアルコール"
-        case 1: strengthLabel.text = "弱い"
-        case 2: strengthLabel.text = "やや強い"
-        case 3: strengthLabel.text = "強い"
-        case 4: strengthLabel.text = "未指定"
-        default: strengthLabel.text = "未指定"
-        }
+        styleLabel.text = RecipeStyleType.fromInt(number: recipe.style).rawValue
+        methodLabel.text = RecipeMethodType.fromInt(number: recipe.method).rawValue
+        strengthLabel.text = RecipeStrengthType.fromInt(number: recipe.strength).rawValue
 
         for ri in recipe.recipeIngredients {
             ingredientList.append(RecipeIngredientBasic(

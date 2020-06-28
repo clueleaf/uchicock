@@ -146,21 +146,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
         updateIngredientRecommendLabel()
         
-        switch ingredient.category{
-        case 0:
-            categoryLabel.text = "アルコール"
+        categoryLabel.text = IngredientCategoryType.fromInt(number: ingredient.category).rawValue
+        if IngredientCategoryType.isAlcohol(number: ingredient.category){
             alcoholIconImage.isHidden = false
             alcoholIconImageWidthConstraint.constant = 17
-        case 1:
-            categoryLabel.text = "ノンアルコール"
-            alcoholIconImage.isHidden = true
-            alcoholIconImageWidthConstraint.constant = 0
-        case 2:
-            categoryLabel.text = "その他"
-            alcoholIconImage.isHidden = true
-            alcoholIconImageWidthConstraint.constant = 0
-        default:
-            categoryLabel.text = "その他"
+        }else{
             alcoholIconImage.isHidden = true
             alcoholIconImageWidthConstraint.constant = 0
         }

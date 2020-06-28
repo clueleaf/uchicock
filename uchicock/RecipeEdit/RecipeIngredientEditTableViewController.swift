@@ -430,17 +430,17 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         //同じ名前の材料が存在しないので新規に登録する
         let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
-        let alcoholAction = UIAlertAction(title: "「アルコール」として登録", style: .default){action in
+        let alcoholAction = UIAlertAction(title: "「\(IngredientCategoryType.alcohol.rawValue)」として登録", style: .default){action in
             self.dismissSelf(withNewIngredientCategory: 0)
         }
         if #available(iOS 13.0, *){ alcoholAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         registAlertView.addAction(alcoholAction)
-        let nonAlcoholAction = UIAlertAction(title: "「ノンアルコール」として登録", style: .default){action in
+        let nonAlcoholAction = UIAlertAction(title: "「\(IngredientCategoryType.nonAlcohol.rawValue)」として登録", style: .default){action in
             self.dismissSelf(withNewIngredientCategory: 1)
         }
         if #available(iOS 13.0, *){ nonAlcoholAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         registAlertView.addAction(nonAlcoholAction)
-        let othersAction = UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
+        let othersAction = UIAlertAction(title: "「\(IngredientCategoryType.others.rawValue)」として登録", style: .default, handler: {action in
             self.dismissSelf(withNewIngredientCategory: 2)
         })
         if #available(iOS 13.0, *){ othersAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }

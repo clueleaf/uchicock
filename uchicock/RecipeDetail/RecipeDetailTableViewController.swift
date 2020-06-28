@@ -273,31 +273,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         star2Button.tintColor = UchicockStyle.primaryColor
         star3Button.tintColor = UchicockStyle.primaryColor
 
-        switch recipe.style{
-        case 0: styleLabel.text = "ロング"
-        case 1: styleLabel.text = "ショート"
-        case 2: styleLabel.text = "ホット"
-        case 3: styleLabel.text = "未指定"
-        default: styleLabel.text = "未指定"
-        }
-        
-        switch recipe.method{
-        case 0: methodLabel.text = "ビルド"
-        case 1: methodLabel.text = "ステア"
-        case 2: methodLabel.text = "シェイク"
-        case 3: methodLabel.text = "ブレンド"
-        case 4: methodLabel.text = "その他"
-        default: methodLabel.text = "その他"
-        }
-        
-        switch recipe.strength{
-        case 0: strengthLabel.text = "ノンアルコール"
-        case 1: strengthLabel.text = "弱い"
-        case 2: strengthLabel.text = "やや強い"
-        case 3: strengthLabel.text = "強い"
-        case 4: strengthLabel.text = "未指定"
-        default: strengthLabel.text = "未指定"
-        }
+        styleLabel.text = RecipeStyleType.fromInt(number: recipe.style).rawValue
+        methodLabel.text = RecipeMethodType.fromInt(number: recipe.method).rawValue
+        strengthLabel.text = RecipeStrengthType.fromInt(number: recipe.strength).rawValue
 
         styleTipButton.tintColor = UchicockStyle.primaryColor
         methodTipButton.tintColor = UchicockStyle.primaryColor
@@ -1184,25 +1162,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     private func createShareText() -> String{
         var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
-        switch recipe.style{
-        case 0: message += "スタイル：ロング\n"
-        case 1: message += "スタイル：ショート\n"
-        case 2: message += "スタイル：ホット\n"
-        default: break
+        if RecipeStyleType.isNotUndefined(number: recipe.style){
+            message += "スタイル：\(RecipeStyleType.fromInt(number: recipe.style).rawValue)\n"
         }
-        switch recipe.method{
-        case 0: message += "技法：ビルド\n"
-        case 1: message += "技法：ステア\n"
-        case 2: message += "技法：シェイク\n"
-        case 3: message += "技法：ブレンド\n"
-        default: break
+        if RecipeMethodType.isNotOthers(number: recipe.method){
+            message += "技法：\(RecipeMethodType.fromInt(number: recipe.method).rawValue)\n"
         }
-        switch recipe.strength{
-        case 0: message += "アルコール度数：ノンアルコール\n"
-        case 1: message += "アルコール度数：弱い\n"
-        case 2: message += "アルコール度数：やや強い\n"
-        case 3: message += "アルコール度数：強い\n"
-        default: break
+        if RecipeStrengthType.isNotUndefined(number: recipe.strength){
+            message += "アルコール度数：\(RecipeStrengthType.fromInt(number: recipe.strength).rawValue)\n"
         }
         message += "\n材料：\n"
         for recipeIngredient in recipeIngredientList{

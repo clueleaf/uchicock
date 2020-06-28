@@ -20,35 +20,6 @@ class ChangeThemeTableViewController: UITableViewController {
         return UchicockStyle.statusBarStyle
     }
 
-    let themeList: [String] = [
-        "テキーラサンライズ - ライト",
-        "テキーラサンライズ - ダーク",
-        "シーブリーズ - ライト",
-        "シーブリーズ - ダーク",
-        "チャイナブルー - ライト",
-        "チャイナブルー - ダーク",
-        "グラスホッパー - ライト",
-        "アイリッシュコーヒー - ダーク",
-        "モヒート - ライト",
-        "レッドアイ - ライト",
-        "キューバリバー - ダーク",
-        "シルバーウィング - ライト",
-        "アメリカンレモネード - ダーク",
-        "ブルーラグーン - ライト",
-        "ブルーラグーン - ダーク",
-        "ミモザ - ライト",
-        "ミモザ - ダーク",
-        "ピンクレディ - ライト",
-        "ピンクレディ - ダーク",
-        "ブラックルシアン - ダーク",
-        "照葉樹林 - ライト",
-        "照葉樹林 - ダーク",
-        "ユニオンジャック - ライト",
-        "ユニオンジャック - ダーク",
-        "ブルームーン - ライト",
-        "ブラッディメアリー - ダーク",
-    ]
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +34,8 @@ class ChangeThemeTableViewController: UITableViewController {
         super.viewDidLayoutSubviews()
         
         if hasScrolled == false{
-            tableView.contentOffset.y = (CGFloat((Int(UchicockStyle.no)!) + 1) * cellHeight) - (tableView.frame.height / 2)
+            
+            tableView.contentOffset.y = (CGFloat(ThemeColorType.toInt(from: UchicockStyle.theme) + 1) * cellHeight) - (tableView.frame.height / 2)
             let maximumOffset = max(-tableView.contentInset.top, tableView.contentSize.height - tableView.bounds.size.height + tableView.contentInset.bottom)
             if tableView.contentOffset.y < 0 { tableView.contentOffset.y = 0 }
             if tableView.contentOffset.y > maximumOffset{ tableView.contentOffset.y = maximumOffset }
@@ -82,7 +54,7 @@ class ChangeThemeTableViewController: UITableViewController {
         previousTableViewBackgroundColor = UchicockStyle.basicBackgroundColor
         
         UchicockStyle.setTheme(themeNo: String(themeNo))
-        UchicockStyle.saveTheme(themeNo: String(themeNo))
+        UchicockStyle.saveTheme(themeNo: themeNo)
         
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         
@@ -126,7 +98,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return themeList.count
+        return ThemeColorType.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
@@ -139,9 +111,9 @@ class ChangeThemeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = themeList[indexPath.row]
+        cell.textLabel?.text = ThemeColorType.fromString(String(indexPath.row)).rawValue
 
-        if String(indexPath.row) == UchicockStyle.no{
+        if ThemeColorType.fromString(String(indexPath.row)) == UchicockStyle.theme{
             let checkmark = UIImage(named: "accesory-checkmark")
             let accesoryImageView = UIImageView(image: checkmark)
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
@@ -171,29 +143,54 @@ class ChangeThemeTableViewController: UITableViewController {
     @IBAction func shuffleButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let shuffleAction = UIAlertAction(title: "おまかせで選ぶ", style: .default){action in
-            var themeNo = Int(UchicockStyle.no)!
-            while themeNo == Int(UchicockStyle.no)!{
-                themeNo = Int.random(in: 0 ..< self.themeList.count)
+            var theme = UchicockStyle.theme
+            while theme == UchicockStyle.theme{
+                theme = ThemeColorType.fromString(String(Int.random(in: 0 ..< ThemeColorType.allCases.count)))
+                    
             }
-            self.changeTheme(themeNo: themeNo, shouldScroll: true)
+            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
         }
         if #available(iOS 13.0, *){ shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(shuffleAction)
         let lightShuffleAction = UIAlertAction(title: "ライトテーマからおまかせ", style: .default){action in
-            var themeNo = Int(UchicockStyle.no)!
-            while themeNo == Int(UchicockStyle.no)!{
-                themeNo = [0,2,4,6,8,9,11,13,15,17,20,22,24].randomElement()!
+            var theme = UchicockStyle.theme
+            while theme == UchicockStyle.theme{
+                theme = [.tequilaSunriseLight,
+                         .seaBreezeLight,
+                         .chinaBlueLight,
+                         .grasshopperLight,
+                         .mojitoLight,
+                         .redEyeLight,
+                         .silverWingLight,
+                         .blueLagoonLight,
+                         .mimosaLight,
+                         .pinkLadyLight,
+                         .shoyoJulingLight,
+                         .unionJackLight,
+                         .blueMoonLight].randomElement()!
             }
-            self.changeTheme(themeNo: themeNo, shouldScroll: true)
+            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
         }
         if #available(iOS 13.0, *){ lightShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(lightShuffleAction)
         let darkShuffleAction = UIAlertAction(title: "ダークテーマからおまかせ", style: .default){action in
-            var themeNo = Int(UchicockStyle.no)!
-            while themeNo == Int(UchicockStyle.no)!{
-                themeNo = [1,3,5,7,10,12,14,16,18,19,21,23,25].randomElement()!
+            var theme = UchicockStyle.theme
+            while theme == UchicockStyle.theme{
+                theme = [.tequilaSunriseDark,
+                         .seaBreezeDark,
+                         .chinaBlueDark,
+                         .irishCoffeeDark,
+                         .cubaLibreDark,
+                         .americanLemonadeDark,
+                         .blueLagoonDark,
+                         .mimosaDark,
+                         .pinkLadyDark,
+                         .blackRussianDark,
+                         .shoyoJulingDark,
+                         .unionJackDark,
+                         .bloodyMaryDark].randomElement()!
             }
-            self.changeTheme(themeNo: themeNo, shouldScroll: true)
+            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
         }
         if #available(iOS 13.0, *){ darkShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(darkShuffleAction)
