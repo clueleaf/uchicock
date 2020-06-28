@@ -22,7 +22,7 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
     var recipe: SimilarRecipeBasic? = nil{
         didSet{
             if recipe != nil{
-                if let image = ImageUtil.loadImageOf(recipeId: recipe!.id, imageFileName: recipe!.imageFileName, forList: true){
+                if let image = ImageUtil.loadImageForList(recipeId: recipe!.id, imageFileName: recipe!.imageFileName){
                     recipeImageView.image = image
                     recipeImageView.isHidden = false
                     noImageImageView.isHidden = true

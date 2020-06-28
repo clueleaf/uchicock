@@ -25,48 +25,49 @@ struct ImageUtil{
         }
     }
     
-    static func loadImageOf(recipeId: String, imageFileName: String?, forList: Bool) -> UIImage? {
+    static func loadImageForList(recipeId: String, imageFileName: String?) -> UIImage? {
         if imageFileName == nil { return nil }
+        if let cachedData = ImageCache.shared.object(forKey: imageFileName! as NSString) {
+            return cachedData
+        }
+
+        let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName! + ".png")
+        let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
+        if let loadedThumbnail = loadedThumbnail{
+            ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName! as NSString)
+            return loadedThumbnail
+        }
 
         let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName! + ".png")
-        let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName! + ".png")
-        
-        if forList{
-            if let cachedData = ImageCache.shared.object(forKey: imageFileName! as NSString) {
-                return cachedData
-            }else{
-                let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
-                if let loadedThumbnail = loadedThumbnail{
-                    ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName! as NSString)
-                    return loadedThumbnail
-                }else{
-                    let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                    if let loadedImage = loadedImage{
-                        ImageCache.shared.setObject(loadedImage, forKey: imageFileName! as NSString)
-                    }else{
-                        let realm = try! Realm()
-                        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
-                        guard recipe != nil else{ return nil }
-                        try! realm.write{
-                            recipe!.imageFileName = nil
-                        }
-                    }
-                    return loadedImage
-                }
-            }
+        let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+        if let loadedImage = loadedImage{
+            ImageCache.shared.setObject(loadedImage, forKey: imageFileName! as NSString)
         }else{
-            let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-            if loadedImage == nil{
-                ImageCache.shared.removeObject(forKey: imageFileName! as NSString)
-                let realm = try! Realm()
-                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
-                guard recipe != nil else{ return nil }
-                try! realm.write{
-                    recipe!.imageFileName = nil
-                }
+            let realm = try! Realm()
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
+            guard recipe != nil else{ return nil }
+            try! realm.write{
+                recipe!.imageFileName = nil
             }
-            return loadedImage
         }
+        return loadedImage
+    }
+    
+    static func loadImageForDetail(recipeId: String, imageFileName: String?) -> UIImage? {
+        if imageFileName == nil { return nil }
+        let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName! + ".png")
+        
+        let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+        if loadedImage == nil{
+            ImageCache.shared.removeObject(forKey: imageFileName! as NSString)
+            let realm = try! Realm()
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
+            guard recipe != nil else{ return nil }
+            try! realm.write{
+                recipe!.imageFileName = nil
+            }
+        }
+        return loadedImage
     }
     
     static func save(image: UIImage, toFileName imageFileName: String) -> Bool{

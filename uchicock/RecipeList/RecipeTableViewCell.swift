@@ -29,7 +29,7 @@ class RecipeTableViewCell: UITableViewCell {
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             self.accessoryView = accesoryImageView
 
-            if let image = ImageUtil.loadImageOf(recipeId: recipe!.id, imageFileName: recipe!.imageFileName, forList: true){
+            if let image = ImageUtil.loadImageForList(recipeId: recipe!.id, imageFileName: recipe!.imageFileName){
                 photoImageView.image = image
             }else{
                 photoImageView.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))

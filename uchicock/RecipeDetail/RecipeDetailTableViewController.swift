@@ -194,7 +194,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         recipe = rec!
         self.navigationItem.title = recipe.recipeName
 
-        if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false), fromContextualMenu == false{
+        if let recipeImage = ImageUtil.loadImageForDetail(recipeId: recipe.id, imageFileName: recipe.imageFileName), fromContextualMenu == false{
             photoImageView.image = recipeImage
             photoWidth = recipeImage.size.width
             photoHeight = recipeImage.size.height

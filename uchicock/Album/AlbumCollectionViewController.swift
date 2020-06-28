@@ -431,7 +431,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
-        guard let image = ImageUtil.loadImageOf(recipeId: filteredRecipeBasicList[indexPath.row].id, imageFileName: filteredRecipeBasicList[indexPath.row].imageFileName, forList: true) else{
+        guard let image = ImageUtil.loadImageForList(recipeId: filteredRecipeBasicList[indexPath.row].id, imageFileName: filteredRecipeBasicList[indexPath.row].imageFileName) else{
             let margin = -albumCellWidth(of: (UIApplication.shared.keyWindow?.bounds.width)!) * 0.2
             cell.photo.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin))
             cell.photo.tintColor = UchicockStyle.noPhotoColor
