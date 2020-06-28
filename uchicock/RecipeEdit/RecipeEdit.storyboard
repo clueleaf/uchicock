@@ -365,7 +365,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="140" id="OUx-Mg-qG0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="QVT-aG-Iy4" id="TiP-7K-6VO"/>
@@ -645,9 +645,9 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="ScA-Rd-Td8"/>
                                 <exclude reference="3v2-XC-LBE"/>
                                 <include reference="UWx-f2-lAr"/>
+                                <exclude reference="ScA-Rd-Td8"/>
                                 <exclude reference="1ab-BT-QzQ"/>
                                 <include reference="5Xe-G3-R4g"/>
                                 <include reference="GEI-WZ-Pyf"/>

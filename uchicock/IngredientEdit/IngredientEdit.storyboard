@@ -208,7 +208,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="240" id="K7K-JW-ZPX"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="oWG-9w-kCh" id="wTC-RE-069"/>
