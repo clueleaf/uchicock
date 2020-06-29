@@ -36,7 +36,6 @@ class RecipeTableViewCell: UITableViewCell {
                 photoImageView.tintColor = UchicockStyle.noPhotoColor
             }
             photoImageView.layer.cornerRadius = 8
-            photoImageView.clipsToBounds = true
             
             bookmarkBackImage.tintColor = UchicockStyle.primaryColor
             bookmarkFrontImage.tintColor = UchicockStyle.primaryColor

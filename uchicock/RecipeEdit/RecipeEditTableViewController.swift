@@ -110,6 +110,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             photoImageView.isHidden = false
             canTapPhoto = true
         }
+        photoImageView.layer.cornerRadius = 10
         photoLabel.textColor = UchicockStyle.primaryColor
 
         let photoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeEditTableViewController.photoTapped))
