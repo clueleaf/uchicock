@@ -305,7 +305,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: - ScrollableToTop
     func scrollToTop() {
-        collectionView?.setContentOffset(CGPoint.zero, animated: true)
+        let xPos = collectionView.contentOffset.x
+        collectionView?.setContentOffset(CGPoint(x: xPos, y: 0), animated: true)
     }
     
     // MARK: - UICollectionView

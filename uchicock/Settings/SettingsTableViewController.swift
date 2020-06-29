@@ -108,7 +108,8 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     
     // MARK: - ScrollableToTop
     func scrollToTop() {
-        tableView?.setContentOffset(CGPoint.zero, animated: true)
+        let xPos = tableView.contentOffset.x
+        tableView?.setContentOffset(CGPoint(x: xPos, y: 0), animated: true)
     }
 
     // MARK: - Table view data source

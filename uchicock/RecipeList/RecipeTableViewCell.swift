@@ -104,7 +104,7 @@ class RecipeTableViewCell: UITableViewCell {
                 shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             }
             
-            self.separatorInset = UIEdgeInsets(top: 0, left: 76, bottom: 0, right: 0)
+            self.separatorInset = UIEdgeInsets(top: 0, left: 78, bottom: 0, right: 0)
         }
     }
     

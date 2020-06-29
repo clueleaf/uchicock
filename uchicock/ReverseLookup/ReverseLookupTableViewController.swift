@@ -648,7 +648,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: - ScrollableToTop
     func scrollToTop() {
-        recipeTableView?.setContentOffset(CGPoint.zero, animated: true)
+        let xPos = recipeTableView.contentOffset.x
+        recipeTableView?.setContentOffset(CGPoint(x: xPos, y: 0), animated: true)
     }
 
     // MARK: - UITextFieldDelegate
