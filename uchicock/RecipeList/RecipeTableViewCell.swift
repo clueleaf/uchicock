@@ -32,9 +32,11 @@ class RecipeTableViewCell: UITableViewCell {
             if let image = ImageUtil.loadImageForList(recipeId: recipe!.id, imageFileName: recipe!.imageFileName){
                 photoImageView.image = image
             }else{
-                photoImageView.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))
+                photoImageView.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -11, left: -11, bottom: -11, right: -11))
                 photoImageView.tintColor = UchicockStyle.noPhotoColor
             }
+            photoImageView.layer.cornerRadius = 8
+            photoImageView.clipsToBounds = true
             
             bookmarkBackImage.tintColor = UchicockStyle.primaryColor
             bookmarkFrontImage.tintColor = UchicockStyle.primaryColor
@@ -102,7 +104,7 @@ class RecipeTableViewCell: UITableViewCell {
                 shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             }
             
-            self.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
+            self.separatorInset = UIEdgeInsets(top: 0, left: 76, bottom: 0, right: 0)
         }
     }
     

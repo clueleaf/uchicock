@@ -83,7 +83,7 @@ class ModalPresentationController: UIPresentationController {
     override func containerViewWillLayoutSubviews() {
         overlayView.frame = containerView!.bounds
         presentedView?.frame = frameOfPresentedViewInContainerView
-        presentedView?.layer.cornerRadius = 10
+        presentedView?.layer.cornerRadius = 20
         presentedView?.clipsToBounds = true
     }
     
