@@ -87,7 +87,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let imageRecipeCount = realm.objects(Recipe.self).filter("imageFileName != nil").count
             let ingredientStockCount = realm.objects(Ingredient.self).filter("stockFlag == true").count
 
-            if daySpan > 7 && launchCount > 5 && imageRecipeCount > 0 && ingredientStockCount > 5{
+            if daySpan > 14 && launchCount > 7 && imageRecipeCount > 1 && ingredientStockCount > 5{
                 defaults.set(true, forKey: GlobalConstants.RequestReviewKey)
                 SKStoreReviewController.requestReview()
             }
