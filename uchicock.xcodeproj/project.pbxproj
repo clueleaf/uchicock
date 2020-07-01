@@ -51,7 +51,7 @@
 		9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */; };
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
-		9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* Style.swift */; };
+		9B41B2AA1E65729E00EF2CEF /* UchicockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* UchicockStyle.swift */; };
 		9B523FD924A30EC600830C51 /* CalcBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B523FD824A30EC600830C51 /* CalcBasic.swift */; };
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
 		9B63E0AA230E8F78004E6B50 /* ImageViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */; };
@@ -198,7 +198,7 @@
 		9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditTableViewController.swift; path = RecipeEdit/RecipeEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
-		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
+		9B41B2A91E65729E00EF2CEF /* UchicockStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UchicockStyle.swift; path = Settings/UchicockStyle.swift; sourceTree = "<group>"; };
 		9B523FD824A30EC600830C51 /* CalcBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcBasic.swift; sourceTree = "<group>"; };
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ImageViewer.storyboard; path = Util/ImageViewer/ImageViewer.storyboard; sourceTree = "<group>"; };
@@ -513,7 +513,7 @@
 				9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */,
 				9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */,
 				9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */,
-				9B41B2A91E65729E00EF2CEF /* Style.swift */,
+				9B41B2A91E65729E00EF2CEF /* UchicockStyle.swift */,
 				9B22FEAB22A1872100D716E3 /* FlatColor.swift */,
 			);
 			name = Settings;
@@ -939,7 +939,7 @@
 				9B2E83DA230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift in Sources */,
 				9B2E83E9230A9F7A002E7946 /* ImageViewerUtil.swift in Sources */,
 				9BEC4C2B2351EC40004FE9B4 /* IngredientRecommendTableViewCell.swift in Sources */,
-				9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */,
+				9B41B2AA1E65729E00EF2CEF /* UchicockStyle.swift in Sources */,
 				9B2E83F3230A9FCB002E7946 /* PullToRefreshHeaderView.swift in Sources */,
 				9B2E83E7230A9F7A002E7946 /* AnimatableImageView.swift in Sources */,
 				9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */,

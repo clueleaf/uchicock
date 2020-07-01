@@ -27,7 +27,7 @@ internal class CircularCheckboxCheckPathGenerator {
     struct CheckmarkProperties {
         
         /// The angle between the x-axis, and the line created between the origin, and the location where the extended long arm of the checkmark meets the box. (Diagram: Θ)
-        var longArmBoxIntersectionAngle: CGFloat = 45.0 * CGFloat(Double.pi / 180.0)
+        var longArmBoxIntersectionAngle: CGFloat = 45.0 * CGFloat(Float.pi / 180.0)
         
         /// The distance from the center the long arm of the checkmark draws to, as a percentage of size. (Diagram: S)
         var longArmRadius: (circle: CGFloat, box: CGFloat) = (circle: 0.22, box: 0.33)
@@ -155,7 +155,7 @@ internal class CircularCheckboxCheckPathGenerator {
         return UIBezierPath(arcCenter: CGPoint(x: size / 2.0, y: size / 2.0),
                             radius: radius,
                             startAngle: -(CGFloat.pi / 2),
-                            endAngle: CGFloat((2 * Double.pi) - (Double.pi / 2)),
+                            endAngle: CGFloat((2 * Float.pi) - (Float.pi / 2)),
                             clockwise: true)
     }
     

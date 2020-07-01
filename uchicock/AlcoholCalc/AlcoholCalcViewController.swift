@@ -135,7 +135,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     private func calcAlcoholStrength(){
         var totalAmount: Int = 0
         var hundredTimesAlcoholAmount: Int = 0
-        var alcoholPercentage: Double = 0.0
+        var alcoholPercentage: Float = 0.0
         
         for ing in calcBasicList where ing.valid{
             totalAmount += ing.amount
@@ -143,13 +143,13 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         }
 
         totalAmountLabel.text = String(totalAmount)
-        alcoholPercentage = totalAmount == 0 ? 0.0 : Double(hundredTimesAlcoholAmount) / Double(totalAmount)
+        alcoholPercentage = totalAmount == 0 ? 0.0 : Float(hundredTimesAlcoholAmount) / Float(totalAmount)
 
         if hundredTimesAlcoholAmount > 0 && hundredTimesAlcoholAmount < 100{
             alcoholAmountLabel.text = "<1"
             alcoholAmountBackup = 0
         }else{
-            let alcoholAmount: Double = Double(hundredTimesAlcoholAmount) / 100.0
+            let alcoholAmount: Float = Float(hundredTimesAlcoholAmount) / 100.0
             alcoholAmountLabel.text = String(Int(floor(alcoholAmount)))
             alcoholAmountBackup = Int(floor(alcoholAmount))
         }
