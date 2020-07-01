@@ -78,12 +78,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         let hasReviewed = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
         guard hasReviewed == false else { return }
-        let launchCount = defaults.integer(forKey: GlobalConstants.LaunchCountKey)
 
+        let launchCount = defaults.integer(forKey: GlobalConstants.LaunchCountKey)
         if let launchDate = defaults.object(forKey: GlobalConstants.LaunchDateKey) as? NSDate {
             defaults.set(launchCount + 1, forKey: GlobalConstants.LaunchCountKey)
             let daySpan = NSDate().timeIntervalSince(launchDate as Date) / 60 / 60 / 24
-            if daySpan > 10 && launchCount > 7{
+            let realm = try! Realm()
+            let imageRecipeCount = realm.objects(Recipe.self).filter("imageFileName != nil").count
+            let ingredientStockCount = realm.objects(Ingredient.self).filter("stockFlag == true").count
+
+            if daySpan > 7 && launchCount > 5 && imageRecipeCount > 0 && ingredientStockCount > 5{
                 defaults.set(true, forKey: GlobalConstants.RequestReviewKey)
                 SKStoreReviewController.requestReview()
             }
