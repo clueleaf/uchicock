@@ -19,6 +19,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var stockCheckbox: CircularCheckbox!
     @IBOutlet weak var categorySegmentedControl: CustomSegmentedControl!
     @IBOutlet weak var memoTextView: CustomTextView!
+    @IBOutlet weak var memoDescriptionLabel: UILabel!
     @IBOutlet weak var memoCounterLabel: UILabel!
     
     weak var mainNavigationController : BasicNavigationController?
@@ -80,7 +81,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memoTextView.layer.borderWidth = 0
         memoTextView.keyboardAppearance = UchicockStyle.keyboardAppearance
         memoTextView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-
+        memoDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
+        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor

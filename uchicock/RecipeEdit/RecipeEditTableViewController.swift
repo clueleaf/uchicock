@@ -33,6 +33,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var strengthSegmentedControl: CustomSegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memoTextView: CustomTextView!
+    @IBOutlet weak var memoDescriptionLabel: UILabel!
     @IBOutlet weak var memoCounterLabel: UILabel!
     @IBOutlet weak var addIngredientLabel: UILabel!
     
@@ -139,6 +140,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memoTextView.layer.borderWidth = 0
         memoTextView.keyboardAppearance = UchicockStyle.keyboardAppearance
         memoTextView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        memoDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
 
         let realm = try! Realm()
         for ri in recipe.recipeIngredients where ri.displayOrder < 0{

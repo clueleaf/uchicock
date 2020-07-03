@@ -223,13 +223,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URLはリンクとして機能します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKK-Hf-Cyr">
+                                                    <rect key="frame" x="8" y="288.5" width="184.5" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="2RT-Ja-du1"/>
+                                                <constraint firstItem="jKK-Hf-Cyr" firstAttribute="leading" secondItem="Dif-6D-K8y" secondAttribute="leading" id="2qZ-Xk-LXn"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="top" secondItem="Dif-6D-K8y" secondAttribute="bottom" constant="8" id="9Vq-IC-P7m"/>
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" constant="-12" id="BIg-Wr-vrR"/>
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="top" secondItem="Wk1-PW-9Mn" secondAttribute="bottom" constant="4" id="EtA-xS-3aR"/>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="top" secondItem="axd-0N-ETE" secondAttribute="top" constant="15" id="Mtl-Ju-Vum"/>
+                                                <constraint firstItem="jKK-Hf-Cyr" firstAttribute="centerY" secondItem="KSJ-oo-XZO" secondAttribute="centerY" id="PcK-Ap-gND"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dif-6D-K8y" secondAttribute="trailing" constant="12" id="m0a-6E-eNT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" constant="12" id="qnn-Yy-TW7"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="xj7-Ry-Lgh"/>
@@ -265,6 +273,7 @@
                         <outlet property="ingredientNameYomiLabel" destination="qp3-QI-o7O" id="zga-G1-VhR"/>
                         <outlet property="ingredientNameYomiTextField" destination="iEF-Bz-gzx" id="7oI-VA-faI"/>
                         <outlet property="memoCounterLabel" destination="KSJ-oo-XZO" id="SDj-uJ-6AP"/>
+                        <outlet property="memoDescriptionLabel" destination="jKK-Hf-Cyr" id="3DR-Fy-XR4"/>
                         <outlet property="memoTextView" destination="Wk1-PW-9Mn" id="6BH-Yv-Aqx"/>
                         <outlet property="stockCheckbox" destination="Nm4-JW-NMO" id="Mm7-X0-bpo"/>
                     </connections>
