@@ -724,8 +724,8 @@ struct UchicockStyle{
         if let themeNo = defaults.string(forKey: GlobalConstants.ColorThemeKey){
             setTheme(themeNo: themeNo)
         }else{
-            defaults.set("16", forKey: GlobalConstants.ColorThemeKey)
-            setTheme(themeNo: "16")
+            defaults.set("0", forKey: GlobalConstants.ColorThemeKey)
+            setTheme(themeNo: "0")
         }
     }
     

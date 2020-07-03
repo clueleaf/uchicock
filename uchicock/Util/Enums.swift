@@ -188,7 +188,7 @@ enum ThemeColorType : String, CaseIterable{
         case "23": return .unionJackDark
         case "24": return .blueMoonLight
         case "25": return .bloodyMaryDark
-        default: return .mimosaDark
+        default: return .tequilaSunriseLight
         }
     }
     
