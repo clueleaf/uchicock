@@ -20,7 +20,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     @IBOutlet weak var newRecipeLabel: UILabel!
     
     var selectedIndexPath: IndexPath? = nil
-    var firstRequestReview = false
+    var shouldRequestReview = false
     var alreadyWrittenReview = false
     let appStoreReviewURL = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review")
     let selectedCellBackgroundView = UIView()
@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         super.viewDidLoad()
 
         let defaults = UserDefaults.standard
-        firstRequestReview = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
+        shouldRequestReview = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
         alreadyWrittenReview = defaults.bool(forKey: GlobalConstants.AlreadyWrittenReviewKey)
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -118,7 +118,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if firstRequestReview == true, alreadyWrittenReview == false, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
+        if shouldRequestReview == true, alreadyWrittenReview == false, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
             return 6
         }else{
             return 5
@@ -161,7 +161,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             alertView.addAction(writeAction)
             let wroteAction = UIAlertAction(title: "もう書いた", style: .destructive){action in
                 let defaults = UserDefaults.standard
-                defaults.set(true, forKey: "AlreadyWrittenReview")
+                defaults.set(true, forKey: GlobalConstants.AlreadyWrittenReviewKey)
                 self.alreadyWrittenReview = true
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
             }

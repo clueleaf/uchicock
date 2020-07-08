@@ -15,5 +15,11 @@ class AlcoholCalcIngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var strengthLabel: CustomLabel!
     @IBOutlet weak var strengthSlider: CustomSlider!
     @IBOutlet weak var amountLabel: CustomLabel!
-    @IBOutlet weak var amountSlider: CustomSlider!    
+    @IBOutlet weak var amountSlider: CustomSlider!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        strengthSlider.isExclusiveTouch = true
+        amountSlider.isExclusiveTouch = true
+    }
 }

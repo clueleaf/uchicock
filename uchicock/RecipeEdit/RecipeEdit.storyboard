@@ -381,14 +381,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URLはリンクとして機能します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDP-CM-2hf">
-                                                    <rect key="frame" x="8" y="189.5" width="171" height="14.5"/>
+                                                    <rect key="frame" x="16" y="189.5" width="171" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yDP-CM-2hf" firstAttribute="leading" secondItem="auN-Kp-oTE" secondAttribute="leading" id="8I8-ec-hcS"/>
+                                                <constraint firstItem="yDP-CM-2hf" firstAttribute="leading" secondItem="auN-Kp-oTE" secondAttribute="leading" constant="8" id="8I8-ec-hcS"/>
                                                 <constraint firstItem="oIR-37-Yn9" firstAttribute="top" secondItem="xlb-Rh-A1C" secondAttribute="bottom" constant="4" id="Bkh-Uq-tHi"/>
                                                 <constraint firstItem="auN-Kp-oTE" firstAttribute="top" secondItem="eA2-mF-Eye" secondAttribute="top" constant="15" id="E0a-Xw-ECa"/>
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="El4-gg-rub"/>

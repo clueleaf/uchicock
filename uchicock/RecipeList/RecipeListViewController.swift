@@ -76,8 +76,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.RequestReviewKey : false, GlobalConstants.LaunchCountKey : 0])
 
-        let hasReviewed = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
-        guard hasReviewed == false else { return }
+        let shouldRequestReview = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
+        guard shouldRequestReview == false else { return }
 
         let launchCount = defaults.integer(forKey: GlobalConstants.LaunchCountKey)
         if let launchDate = defaults.object(forKey: GlobalConstants.LaunchDateKey) as? NSDate {

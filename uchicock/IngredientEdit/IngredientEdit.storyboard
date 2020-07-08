@@ -224,7 +224,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URLはリンクとして機能します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKK-Hf-Cyr">
-                                                    <rect key="frame" x="8" y="289.5" width="171" height="14.5"/>
+                                                    <rect key="frame" x="16" y="289.5" width="171" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -232,7 +232,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="2RT-Ja-du1"/>
-                                                <constraint firstItem="jKK-Hf-Cyr" firstAttribute="leading" secondItem="Dif-6D-K8y" secondAttribute="leading" id="2qZ-Xk-LXn"/>
+                                                <constraint firstItem="jKK-Hf-Cyr" firstAttribute="leading" secondItem="Dif-6D-K8y" secondAttribute="leading" constant="8" id="2qZ-Xk-LXn"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="top" secondItem="Dif-6D-K8y" secondAttribute="bottom" constant="8" id="9Vq-IC-P7m"/>
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" constant="-12" id="BIg-Wr-vrR"/>
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="top" secondItem="Wk1-PW-9Mn" secondAttribute="bottom" constant="4" id="EtA-xS-3aR"/>
