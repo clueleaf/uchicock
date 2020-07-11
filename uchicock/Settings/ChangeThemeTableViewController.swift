@@ -141,7 +141,7 @@ class ChangeThemeTableViewController: UITableViewController {
     
     // MARK: - IBAction
     @IBAction func shuffleButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
         let shuffleAction = UIAlertAction(title: "おまかせで選ぶ", style: .default){action in
             var theme = UchicockStyle.theme
             while theme == UchicockStyle.theme{

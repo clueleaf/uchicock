@@ -540,7 +540,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
         let nameOrderAction = UIAlertAction(title: "レシピを名前順に並べ替える", style: .default){action in
             self.refresh(shouldShuffle: false)
         }
