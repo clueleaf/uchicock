@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -25,18 +25,8 @@
                             <constraint firstAttribute="height" constant="40" id="nWP-mS-LTR"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-VO-Ads">
-                        <rect key="frame" x="56" y="15" width="30" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="2OJ-dE-Smc"/>
-                            <constraint firstAttribute="height" constant="14" id="bst-te-nwl"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcV-y1-cun" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                        <rect key="frame" x="86" y="11.5" width="164.5" height="21"/>
+                        <rect key="frame" x="56" y="11.5" width="194.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="YTQ-FX-hag"/>
                         </constraints>
@@ -59,18 +49,14 @@
                     <constraint firstItem="qcV-y1-cun" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1EU-EE-sC7"/>
                     <constraint firstItem="cby-NE-ZOs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3jo-jz-fe2"/>
                     <constraint firstItem="cby-NE-ZOs" firstAttribute="leading" secondItem="qcV-y1-cun" secondAttribute="trailing" constant="8" id="Ala-VE-XLw"/>
-                    <constraint firstItem="qcV-y1-cun" firstAttribute="leading" secondItem="xkZ-VO-Ads" secondAttribute="trailing" id="Epd-yG-fab"/>
-                    <constraint firstItem="xkZ-VO-Ads" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GgS-CZ-bZw"/>
+                    <constraint firstItem="qcV-y1-cun" firstAttribute="leading" secondItem="WNk-ev-Jk5" secondAttribute="trailing" constant="8" id="Gdh-W6-ecb"/>
                     <constraint firstItem="WNk-ev-Jk5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="MJy-Ih-yS3"/>
                     <constraint firstAttribute="trailing" secondItem="cby-NE-ZOs" secondAttribute="trailing" id="bHc-0A-wJ6"/>
-                    <constraint firstItem="xkZ-VO-Ads" firstAttribute="leading" secondItem="WNk-ev-Jk5" secondAttribute="trailing" constant="8" id="cW9-vw-1hO"/>
                     <constraint firstItem="WNk-ev-Jk5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xop-Jb-BFP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="newRecipeLabel" destination="xkZ-VO-Ads" id="k2U-Ie-0Di"/>
-                <outlet property="newRecipeLabelWidthConstraint" destination="2OJ-dE-Smc" id="Y1n-tL-AI8"/>
                 <outlet property="previewLabel" destination="cby-NE-ZOs" id="0AY-k1-S5V"/>
                 <outlet property="recipeNameLabel" destination="qcV-y1-cun" id="Tzf-ka-S0r"/>
                 <outlet property="targetCheckbox" destination="WNk-ev-Jk5" id="ptV-48-Npy"/>

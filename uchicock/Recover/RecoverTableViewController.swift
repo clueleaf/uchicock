@@ -23,8 +23,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     
     var isRecovering = false
-    var shouldAdd73Badge = false
-    var shouldAdd80Badge = false
     let selectedCellBackgroundView = UIView()
 
     let interactor = Interactor()
@@ -83,8 +81,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         let defaults = UserDefaults.standard
-        shouldAdd73Badge = !defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
-        shouldAdd80Badge = !defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
         defaults.set(true, forKey: GlobalConstants.Version81NewRecipeViewedKey)
     }
     
@@ -388,9 +384,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
-            
-            cell.shouldAdd73Badge = self.shouldAdd73Badge
-            cell.shouldAdd80Badge = self.shouldAdd80Badge
 
             if indexPath.row < recoverableSampleRecipeList.count{
                 cell.isRecoverable = true
