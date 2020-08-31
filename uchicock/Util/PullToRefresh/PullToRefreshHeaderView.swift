@@ -213,14 +213,6 @@ open class PullToRefreshHeaderView: UIView {
             return
         }
         
-        // Check needs re-set animator's progress or not.
-        var isRecordingProgress = false
-        defer {
-            if isRecordingProgress == true {
-                let percent = -(previousOffset + scrollViewInsets.top) / self.animator.trigger
-            }
-        }
-        
         let offsets = previousOffset + scrollViewInsets.top
         if offsets < -self.animator.trigger {
             // Reached critical
@@ -232,14 +224,12 @@ open class PullToRefreshHeaderView: UIView {
                 }else{
                     // Release to refresh! Please drop down hard...
                     self.animator.refresh(view: self, stateDidChange: .releaseToRefresh)
-                    isRecordingProgress = true
                 }
             }
         }else if offsets < 0 {
             // Pull to refresh!
             if isRefreshing == false {
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-                isRecordingProgress = true
             }
         }else{
             // Normal state
