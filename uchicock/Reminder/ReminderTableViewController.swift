@@ -45,6 +45,7 @@ class ReminderTableViewController: UITableViewController {
         designateDateCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         designateDateCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
+        datePicker.tintColor = UchicockStyle.primaryColor
         datePicker.datePickerMode = .dateAndTime
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
