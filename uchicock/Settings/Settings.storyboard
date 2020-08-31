@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -310,12 +311,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="テーマカラー" id="BtI-F4-rgv">
-                        <barButtonItem key="rightBarButtonItem" image="navigation-album-order" id="7Pu-ai-hTe">
-                            <connections>
-                                <action selector="shuffleButtonTapped:" destination="LHv-Sj-xL6" id="e3r-Yd-W1l"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="navigation-album-shuffle" id="7Pu-ai-hTe"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="randomBarButton" destination="7Pu-ai-hTe" id="LIV-x5-dg7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zon-7O-zFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -328,7 +328,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="I0q-BP-3up">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="Roi-c5-jeR">
                                 <cells>
@@ -429,12 +429,15 @@
     </scenes>
     <resources>
         <image name="button-star-filled" width="24" height="24"/>
-        <image name="navigation-album-order" width="24" height="24"/>
+        <image name="navigation-album-shuffle" width="24" height="24"/>
         <image name="settings-calc" width="24" height="24"/>
         <image name="settings-image" width="24" height="24"/>
         <image name="settings-info" width="24" height="24"/>
         <image name="settings-recover" width="24" height="24"/>
         <image name="settings-theme" width="24" height="24"/>
         <image name="tabbar-settings" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

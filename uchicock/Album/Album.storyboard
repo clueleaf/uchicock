@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwW-90-Lzq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwW-90-Lzq">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -42,11 +42,7 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" image="navigation-album-order" id="bqV-mq-viL">
-                            <connections>
-                                <action selector="orderButtonTapped:" destination="cmn-VU-7rH" id="fkp-5b-fEP"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="navigation-album-shuffle" id="bqV-mq-viL"/>
                     </navigationItem>
                     <connections>
                         <outlet property="albumFilterBarButton" destination="zoY-sF-pqa" id="6Yj-p9-ELR"/>
@@ -90,7 +86,7 @@
     <resources>
         <image name="navigation-album-filter-off" width="24" height="24"/>
         <image name="navigation-album-name-off" width="24" height="24"/>
-        <image name="navigation-album-order" width="24" height="24"/>
+        <image name="navigation-album-shuffle" width="24" height="24"/>
         <image name="tabbar-album" width="24" height="24"/>
     </resources>
 </document>

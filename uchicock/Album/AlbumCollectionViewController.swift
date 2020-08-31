@@ -52,6 +52,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         recipeNameBarButton.image = UIImage(named: "navigation-album-name-off")
         albumFilterBarButton.image = UIImage(named: "navigation-album-filter-off")
+                
+        if #available(iOS 14.0, *) {
+            let nameOrderAction = UIAction(title: "名前順", image: UIImage(named: "navigation-album-order")) { action in
+                self.refresh(shouldShuffle: false)
+            }
+            let shuffleAction = UIAction(title: "シャッフル", image: UIImage(named: "navigation-album-shuffle")) { action in
+                self.refresh(shouldShuffle: true)
+            }
+            orderBarButton.menu = UIMenu(title: "表示順を並べ替え", children: [nameOrderAction, shuffleAction])
+        }else{
+            orderBarButton.target = self
+            orderBarButton.action = #selector(orderButtonTapped(sender:))
+        }
     }
     
     private func setFilterUserDefaults(){
@@ -539,7 +552,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         present(nvc, animated: true)
     }
     
-    @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
+    @objc func orderButtonTapped(sender: UIBarButtonItem) {
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let nameOrderAction = UIAlertAction(title: "レシピを名前順に並べ替える", style: .default){action in
             self.refresh(shouldShuffle: false)

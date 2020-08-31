@@ -10,6 +10,7 @@ import UIKit
 
 class ChangeThemeTableViewController: UITableViewController {
 
+    @IBOutlet weak var randomBarButton: UIBarButtonItem!
     let animationDuration = 0.4
     var hasScrolled = false
     var shouldAnimate = false
@@ -28,6 +29,13 @@ class ChangeThemeTableViewController: UITableViewController {
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
+        
+        if #available(iOS 14.0, *) {
+            setIOS14RandomButtonMenu()
+        }else{
+            randomBarButton.target = self
+            randomBarButton.action = #selector(shuffleButtonTapped(sender:))
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -86,6 +94,71 @@ class ChangeThemeTableViewController: UITableViewController {
         if willScroll{
             tableView.scrollToRow(at: IndexPath(row: themeNo, section: 0), at: .middle, animated: true)
         }
+        
+        if #available(iOS 14.0, *) {
+            setIOS14RandomButtonMenu()
+        }
+    }
+    
+    @available(iOS 14.0, *)
+    func setIOS14RandomButtonMenu(){
+        let shuffleAction = UIAction(title: "全テーマから", image: UIImage(named: "button-tip")) { action in
+            var theme = UchicockStyle.theme
+            while theme == UchicockStyle.theme{
+                theme = ThemeColorType.fromString(String(Int.random(in: 0 ..< ThemeColorType.allCases.count)))
+                    
+            }
+            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
+        }
+        
+        var lightImage = UIImage(named: "empty-circle")
+        if UchicockStyle.isBackgroundDark{
+            lightImage = UIImage(named: "filled-circle")
+        }
+        let lightShuffleAction = UIAction(title: "ライトテーマから", image: lightImage) { action in
+            var theme = UchicockStyle.theme
+            while theme == UchicockStyle.theme{
+                theme = [.tequilaSunriseLight,
+                         .seaBreezeLight,
+                         .chinaBlueLight,
+                         .grasshopperLight,
+                         .mojitoLight,
+                         .redEyeLight,
+                         .silverWingLight,
+                         .blueLagoonLight,
+                         .mimosaLight,
+                         .pinkLadyLight,
+                         .shoyoJulingLight,
+                         .unionJackLight,
+                         .blueMoonLight].randomElement()!
+            }
+            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
+        }
+        
+        var darkImage = UIImage(named: "filled-circle")
+        if UchicockStyle.isBackgroundDark{
+            darkImage = UIImage(named: "empty-circle")
+        }
+        let darkShuffleAction = UIAction(title: "ダークテーマから", image: darkImage) { action in
+            var theme = UchicockStyle.theme
+            while theme == UchicockStyle.theme{
+                theme = [.tequilaSunriseDark,
+                         .seaBreezeDark,
+                         .chinaBlueDark,
+                         .irishCoffeeDark,
+                         .cubaLibreDark,
+                         .americanLemonadeDark,
+                         .blueLagoonDark,
+                         .mimosaDark,
+                         .pinkLadyDark,
+                         .blackRussianDark,
+                         .shoyoJulingDark,
+                         .unionJackDark,
+                         .bloodyMaryDark].randomElement()!
+            }
+            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
+        }
+        randomBarButton.menu = UIMenu(title: "おまかせで選ぶ", children: [shuffleAction, lightShuffleAction, darkShuffleAction])
     }
     
     // MARK: - Table view data source
@@ -140,7 +213,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     // MARK: - IBAction
-    @IBAction func shuffleButtonTapped(_ sender: UIBarButtonItem) {
+    @objc func shuffleButtonTapped(sender: UIBarButtonItem) {
         // statusbarの時計の色の変化がなぜかおかしくなることがあるので、preferredStyleをalertではなくactionSheetにする必要がある
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let shuffleAction = UIAlertAction(title: "おまかせで選ぶ", style: .default){action in
