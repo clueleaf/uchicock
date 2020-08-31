@@ -111,11 +111,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
         }
         
-        var lightImage = UIImage(named: "empty-circle")
-        if UchicockStyle.isBackgroundDark{
-            lightImage = UIImage(named: "filled-circle")
-        }
-        let lightShuffleAction = UIAction(title: "ライトテーマから", image: lightImage) { action in
+        let lightShuffleAction = UIAction(title: "ライトテーマから", image: UIImage(named: "theme-sun")) { action in
             var theme = UchicockStyle.theme
             while theme == UchicockStyle.theme{
                 theme = [.tequilaSunriseLight,
@@ -135,11 +131,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
         }
         
-        var darkImage = UIImage(named: "filled-circle")
-        if UchicockStyle.isBackgroundDark{
-            darkImage = UIImage(named: "empty-circle")
-        }
-        let darkShuffleAction = UIAction(title: "ダークテーマから", image: darkImage) { action in
+        let darkShuffleAction = UIAction(title: "ダークテーマから", image: UIImage(named: "theme-moon")) { action in
             var theme = UchicockStyle.theme
             while theme == UchicockStyle.theme{
                 theme = [.tequilaSunriseDark,
