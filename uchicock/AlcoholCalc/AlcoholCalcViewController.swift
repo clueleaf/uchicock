@@ -212,8 +212,10 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell?.validLabel.textColor = UchicockStyle.labelTextColor
         cell?.strengthLabel.textColor = UchicockStyle.labelTextColor
         cell?.strengthSlider.isEnabled = true
+        cell?.strengthSlider.setNeedsLayout()
         cell?.amountLabel.textColor = UchicockStyle.labelTextColor
         cell?.amountSlider.isEnabled = true
+        cell?.amountSlider.setNeedsLayout()
     }
     
     private func setCellInvalid(cell: AlcoholCalcIngredientTableViewCell?){
@@ -221,8 +223,10 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell?.validLabel.textColor = UchicockStyle.labelTextColorLight
         cell?.strengthLabel.textColor = UchicockStyle.labelTextColorLight
         cell?.strengthSlider.isEnabled = false
+        cell?.strengthSlider.setNeedsLayout()
         cell?.amountLabel.textColor = UchicockStyle.labelTextColorLight
         cell?.amountSlider.isEnabled = false
+        cell?.amountSlider.setNeedsLayout()
     }
     
     @objc func cellValidCheckboxTapped(_ sender: CircularCheckbox){
