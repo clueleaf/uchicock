@@ -48,8 +48,12 @@ class ReminderTableViewController: UITableViewController {
         datePicker.datePickerMode = .dateAndTime
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
-        datePicker.setValue(UchicockStyle.labelTextColor, forKey: "textColor")
-        datePicker.setValue(false, forKey: "highlightsToday")
+        if #available(iOS 14.0, *) {
+            datePicker.preferredDatePickerStyle = .inline
+        }else{
+            datePicker.setValue(UchicockStyle.labelTextColor, forKey: "textColor")
+            datePicker.setValue(false, forKey: "highlightsToday")
+        }
 
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor

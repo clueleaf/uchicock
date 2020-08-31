@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjZ-zr-dNb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjZ-zr-dNb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -158,23 +158,25 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="GcV-F6-Zuf">
-                                        <rect key="frame" x="0.0" y="236" width="375" height="216"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="GcV-F6-Zuf">
+                                        <rect key="frame" x="0.0" y="236" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GcV-F6-Zuf" id="fNP-n8-tWf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="DZ9-VJ-vWH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                                                    <rect key="frame" x="67.5" y="0.0" width="240" height="300"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="DZ9-VJ-vWH" secondAttribute="height" multiplier="4:5" id="pMx-fW-vTo"/>
+                                                    </constraints>
                                                     <locale key="locale" localeIdentifier="ja_JP"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="DZ9-VJ-vWH" firstAttribute="centerX" secondItem="fNP-n8-tWf" secondAttribute="centerX" id="03W-O4-tBh"/>
                                                 <constraint firstAttribute="bottom" secondItem="DZ9-VJ-vWH" secondAttribute="bottom" id="4gi-qM-V0L"/>
                                                 <constraint firstItem="DZ9-VJ-vWH" firstAttribute="top" secondItem="fNP-n8-tWf" secondAttribute="top" id="6l8-tT-u4z"/>
-                                                <constraint firstItem="DZ9-VJ-vWH" firstAttribute="leading" secondItem="fNP-n8-tWf" secondAttribute="leading" id="Jym-9K-8vO"/>
-                                                <constraint firstAttribute="trailing" secondItem="DZ9-VJ-vWH" secondAttribute="trailing" id="Oks-Xk-Kn5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
