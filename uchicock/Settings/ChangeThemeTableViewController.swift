@@ -31,7 +31,55 @@ class ChangeThemeTableViewController: UITableViewController {
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         
         if #available(iOS 14.0, *) {
-            setIOS14RandomButtonMenu()
+            let shuffleAction = UIAction(title: "全テーマから", image: UIImage(named: "button-tip")) { action in
+                var theme = UchicockStyle.theme
+                while theme == UchicockStyle.theme{
+                    theme = ThemeColorType.fromString(String(Int.random(in: 0 ..< ThemeColorType.allCases.count)))
+                        
+                }
+                self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
+            }
+            
+            let lightShuffleAction = UIAction(title: "ライトテーマから", image: UIImage(named: "theme-sun")) { action in
+                var theme = UchicockStyle.theme
+                while theme == UchicockStyle.theme{
+                    theme = [.tequilaSunriseLight,
+                             .seaBreezeLight,
+                             .chinaBlueLight,
+                             .grasshopperLight,
+                             .mojitoLight,
+                             .redEyeLight,
+                             .silverWingLight,
+                             .blueLagoonLight,
+                             .mimosaLight,
+                             .pinkLadyLight,
+                             .shoyoJulingLight,
+                             .unionJackLight,
+                             .blueMoonLight].randomElement()!
+                }
+                self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
+            }
+            
+            let darkShuffleAction = UIAction(title: "ダークテーマから", image: UIImage(named: "theme-moon")) { action in
+                var theme = UchicockStyle.theme
+                while theme == UchicockStyle.theme{
+                    theme = [.tequilaSunriseDark,
+                             .seaBreezeDark,
+                             .chinaBlueDark,
+                             .irishCoffeeDark,
+                             .cubaLibreDark,
+                             .americanLemonadeDark,
+                             .blueLagoonDark,
+                             .mimosaDark,
+                             .pinkLadyDark,
+                             .blackRussianDark,
+                             .shoyoJulingDark,
+                             .unionJackDark,
+                             .bloodyMaryDark].randomElement()!
+                }
+                self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
+            }
+            randomBarButton.menu = UIMenu(title: "おまかせで選ぶ", children: [shuffleAction, lightShuffleAction, darkShuffleAction])
         }else{
             randomBarButton.target = self
             randomBarButton.action = #selector(shuffleButtonTapped(sender:))
@@ -94,63 +142,6 @@ class ChangeThemeTableViewController: UITableViewController {
         if willScroll{
             tableView.scrollToRow(at: IndexPath(row: themeNo, section: 0), at: .middle, animated: true)
         }
-        
-        if #available(iOS 14.0, *) {
-            setIOS14RandomButtonMenu()
-        }
-    }
-    
-    @available(iOS 14.0, *)
-    func setIOS14RandomButtonMenu(){
-        let shuffleAction = UIAction(title: "全テーマから", image: UIImage(named: "button-tip")) { action in
-            var theme = UchicockStyle.theme
-            while theme == UchicockStyle.theme{
-                theme = ThemeColorType.fromString(String(Int.random(in: 0 ..< ThemeColorType.allCases.count)))
-                    
-            }
-            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
-        }
-        
-        let lightShuffleAction = UIAction(title: "ライトテーマから", image: UIImage(named: "theme-sun")) { action in
-            var theme = UchicockStyle.theme
-            while theme == UchicockStyle.theme{
-                theme = [.tequilaSunriseLight,
-                         .seaBreezeLight,
-                         .chinaBlueLight,
-                         .grasshopperLight,
-                         .mojitoLight,
-                         .redEyeLight,
-                         .silverWingLight,
-                         .blueLagoonLight,
-                         .mimosaLight,
-                         .pinkLadyLight,
-                         .shoyoJulingLight,
-                         .unionJackLight,
-                         .blueMoonLight].randomElement()!
-            }
-            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
-        }
-        
-        let darkShuffleAction = UIAction(title: "ダークテーマから", image: UIImage(named: "theme-moon")) { action in
-            var theme = UchicockStyle.theme
-            while theme == UchicockStyle.theme{
-                theme = [.tequilaSunriseDark,
-                         .seaBreezeDark,
-                         .chinaBlueDark,
-                         .irishCoffeeDark,
-                         .cubaLibreDark,
-                         .americanLemonadeDark,
-                         .blueLagoonDark,
-                         .mimosaDark,
-                         .pinkLadyDark,
-                         .blackRussianDark,
-                         .shoyoJulingDark,
-                         .unionJackDark,
-                         .bloodyMaryDark].randomElement()!
-            }
-            self.changeTheme(themeNo: ThemeColorType.toInt(from: theme), shouldScroll: true)
-        }
-        randomBarButton.menu = UIMenu(title: "おまかせで選ぶ", children: [shuffleAction, lightShuffleAction, darkShuffleAction])
     }
     
     // MARK: - Table view data source
