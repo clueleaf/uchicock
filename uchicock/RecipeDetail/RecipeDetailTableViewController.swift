@@ -587,7 +587,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         alertView.addAction(photoAction)
         let clipboardAction = UIAlertAction(title: "クリップボードへコピー",style: .default){action in
             UIPasteboard.general.image = loadedImage!
-            MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true, isCenter: true)
+            if #available(iOS 14.0, *) {
+            }else{
+                MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true, isCenter: true)
+            }
         }
         if #available(iOS 13.0, *){ clipboardAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(clipboardAction)
