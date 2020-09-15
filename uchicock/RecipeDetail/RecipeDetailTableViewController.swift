@@ -34,7 +34,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var openInSafariButton: UIButton!
+    @IBOutlet weak var openBrowserButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     @IBOutlet weak var similarRecipeCollectionView: UICollectionView!
@@ -129,8 +129,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         editButton.clipsToBounds = true
         shareButton.layer.cornerRadius = shareButton.frame.size.width / 2
         shareButton.clipsToBounds = true
-        openInSafariButton.layer.cornerRadius = openInSafariButton.frame.size.width / 2
-        openInSafariButton.clipsToBounds = true
+        openBrowserButton.layer.cornerRadius = openBrowserButton.frame.size.width / 2
+        openBrowserButton.clipsToBounds = true
         deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
         deleteButton.clipsToBounds = true
 
@@ -323,8 +323,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         editButton.tintColor = UchicockStyle.basicBackgroundColor
         shareButton.backgroundColor = UchicockStyle.primaryColor
         shareButton.tintColor = UchicockStyle.basicBackgroundColor
-        openInSafariButton.backgroundColor = UchicockStyle.primaryColor
-        openInSafariButton.tintColor = UchicockStyle.basicBackgroundColor
+        openBrowserButton.backgroundColor = UchicockStyle.primaryColor
+        openBrowserButton.tintColor = UchicockStyle.basicBackgroundColor
         deleteButton.backgroundColor = UchicockStyle.alertColor
         deleteButton.tintColor = UchicockStyle.basicBackgroundColor
         
@@ -1184,7 +1184,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         return message
     }
     
-    @IBAction func openInSafariButtonTapped(_ sender: UIButton) {
+    @IBAction func openBrowserButtonTapped(_ sender: UIButton) {
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         UIApplication.shared.open(url!, options: [:], completionHandler: nil)

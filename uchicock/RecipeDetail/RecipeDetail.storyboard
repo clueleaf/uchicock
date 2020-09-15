@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZVL-2s-yCx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZVL-2s-yCx">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,7 +70,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="レシピ名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-Sb-9J1" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="22.5" width="317" height="46"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textView>
@@ -175,10 +176,10 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="スタイル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBQ-O2-pTv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="15" width="69.5" height="20"/>
+                                                    <viewLayoutGuide key="safeArea" id="s9W-zN-Req"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="bGR-cu-mS0"/>
                                                     </constraints>
-                                                    <viewLayoutGuide key="safeArea" id="s9W-zN-Req"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -334,7 +335,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dM6-Pc-OLF" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="44" width="355" height="0.0"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -377,7 +378,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZO-3V-dxg" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZO-3V-dxg" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="333" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="LQ8-Ee-ukb"/>
@@ -389,7 +390,7 @@
                                                         <action selector="madeNumPlusButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="IAl-59-jnt"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-1P-aFO" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-1P-aFO" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="223" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="JJh-TJ-P4J"/>
@@ -444,7 +445,7 @@
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <state key="normal" image="button-edit">
-                                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                                     </state>
                                                                     <connections>
                                                                         <action selector="editButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="Gwk-uR-j9b"/>
@@ -503,14 +504,14 @@
                                                                         <constraint firstAttribute="width" constant="48" id="33o-n6-oYW"/>
                                                                         <constraint firstAttribute="height" constant="48" id="fSR-lC-GKM"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="button-safari"/>
+                                                                    <state key="normal" image="tabbar-reverse-lookup"/>
                                                                     <connections>
-                                                                        <action selector="openInSafariButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="IH4-hn-Yxn"/>
+                                                                        <action selector="openBrowserButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="Ogj-3A-s93"/>
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em0-1U-jrI" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                    <rect key="frame" x="24.5" y="61" width="45" height="29"/>
-                                                                    <string key="text">Safariで
+                                                                    <rect key="frame" x="16" y="61" width="61.5" height="29"/>
+                                                                    <string key="text">ブラウザで
 検索</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
@@ -632,7 +633,7 @@
                         <outlet property="memoTextView" destination="dM6-Pc-OLF" id="iMi-xa-OWL"/>
                         <outlet property="methodLabel" destination="sca-mX-RzU" id="Weq-f3-A9O"/>
                         <outlet property="methodTipButton" destination="KSZ-h7-jZu" id="vUd-DX-5PB"/>
-                        <outlet property="openInSafariButton" destination="so1-Ff-BH9" id="TJa-xE-2IU"/>
+                        <outlet property="openBrowserButton" destination="so1-Ff-BH9" id="3Ux-65-PFb"/>
                         <outlet property="photoImageView" destination="XT8-og-tYP" id="oFw-jP-lEq"/>
                         <outlet property="recipeNameTextView" destination="9sc-Sb-9J1" id="2uc-PX-HIz"/>
                         <outlet property="recipeNameYomiLabel" destination="w0U-iU-Pie" id="4oy-6R-X7w"/>
@@ -674,10 +675,16 @@
     <resources>
         <image name="button-delete" width="24" height="24"/>
         <image name="button-edit" width="24" height="24"/>
-        <image name="button-safari" width="240" height="240"/>
         <image name="button-share" width="24" height="24"/>
         <image name="button-star-empty" width="24" height="24"/>
         <image name="button-tip" width="24" height="24"/>
         <image name="navigation-recipe-bookmark-off" width="24" height="24"/>
+        <image name="tabbar-reverse-lookup" width="24" height="24"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
