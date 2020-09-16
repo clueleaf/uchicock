@@ -21,8 +21,9 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var isBrowsingMode = false
     let gradient = CAGradientLayer()
 
+    var statuBarHidden = false
     override var prefersStatusBarHidden: Bool {
-        return true
+        return statuBarHidden
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -59,6 +60,18 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         
         gradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.8).cgColor]
         captionBackgroundView.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        statuBarHidden = true
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        statuBarHidden = false
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLayoutSubviews() {
