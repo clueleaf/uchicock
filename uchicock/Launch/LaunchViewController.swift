@@ -17,7 +17,7 @@ class LaunchViewController: UIViewController {
     var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
     var initializedFullScreenPopGesture = false
-    var todayWidgetUrl: String? = nil
+    var shortcutItemType: String? = nil
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
@@ -36,7 +36,7 @@ class LaunchViewController: UIViewController {
             shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }else{
-            prepareMessage.alpha = todayWidgetUrl == nil ? 1.0 : 0.0
+            prepareMessage.alpha = shortcutItemType == nil ? 1.0 : 0.0
         }
     }
     
@@ -53,7 +53,7 @@ class LaunchViewController: UIViewController {
     
     // MARK: - Processing
     private func prepareToShowRecipeList(){
-        prepareMessage.alpha = todayWidgetUrl == nil ? 1.0 : 0.0
+        prepareMessage.alpha = shortcutItemType == nil ? 1.0 : 0.0
 
         let realm = try! Realm()
 
@@ -117,22 +117,22 @@ class LaunchViewController: UIViewController {
         tabBarC.modalTransitionStyle = .crossDissolve
 
         var index = 0
-        switch todayWidgetUrl{
-        case "uchicock://bookmark":
+        switch shortcutItemType{
+        case "jp.kou.uchicock.bookmark":
             index = 0
             let navC = tabBarC.viewControllers![0] as! UINavigationController
             let recipeVC = navC.visibleViewController as? RecipeListViewController
             recipeVC?.isBookmarkMode = true
             recipeVC?.shouldShowBookmarkGuide = true
-        case "uchicock://reminder":
+        case "jp.kou.uchicock.reminder":
             index = 1
             let navC = tabBarC.viewControllers![1] as! UINavigationController
             let ingredientVC = navC.visibleViewController as? IngredientListViewController
             ingredientVC?.isReminderMode = true
             ingredientVC?.shouldShowReminderGuide = true
-        case "uchicock://album":
+        case "jp.kou.uchicock.album":
             index = 3
-        case "uchicock://calc":
+        case "jp.kou.uchicock.calc":
             index = 4
             let navC = tabBarC.viewControllers![4] as! UINavigationController
             let settingsVC = navC.visibleViewController as? SettingsTableViewController
@@ -144,7 +144,7 @@ class LaunchViewController: UIViewController {
         default:
             break
         }
-        todayWidgetUrl = nil
+        shortcutItemType = nil
         tabBarC.selectedIndex = index
         tabBarC.lastSelectedIndex = index
 

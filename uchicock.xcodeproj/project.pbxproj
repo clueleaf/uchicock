@@ -118,25 +118,10 @@
 		9BEC4C3F2351EC9B004FE9B4 /* AlbumFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC4C3D2351EC9B004FE9B4 /* AlbumFilterViewController.swift */; };
 		9BEC4C412351ECF1004FE9B4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC4C402351ECF1004FE9B4 /* Settings.storyboard */; };
 		9BEC4C432351ED51004FE9B4 /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC4C422351ED51004FE9B4 /* Introduction.storyboard */; };
-		9BEC8B1524283289009CF8CA /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC8B1424283289009CF8CA /* NotificationCenter.framework */; };
-		9BEC8B1824283289009CF8CA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC8B1724283289009CF8CA /* TodayViewController.swift */; };
-		9BEC8B1B24283289009CF8CA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC8B1924283289009CF8CA /* MainInterface.storyboard */; };
-		9BEC8B1F24283289009CF8CA /* うちカク！.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BEC8B1324283289009CF8CA /* うちカク！.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9BEC8B25242835C3009CF8CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC8B24242835C3009CF8CA /* Media.xcassets */; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9BEC8B1D24283289009CF8CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9BC9A3091C783CAA0031F631 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9BEC8B1224283289009CF8CA;
-			remoteInfo = "uchicock Widget";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		9BEC8B2024283289009CF8CA /* Embed App Extensions */ = {
@@ -145,7 +130,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9BEC8B1F24283289009CF8CA /* うちカク！.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,12 +252,7 @@
 		9BEC4C3D2351EC9B004FE9B4 /* AlbumFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumFilterViewController.swift; path = AlbumFilter/AlbumFilterViewController.swift; sourceTree = "<group>"; };
 		9BEC4C402351ECF1004FE9B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Settings/Settings.storyboard; sourceTree = "<group>"; };
 		9BEC4C422351ED51004FE9B4 /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Introduction.storyboard; path = Util/Introduction/Introduction.storyboard; sourceTree = "<group>"; };
-		9BEC8B1324283289009CF8CA /* うちカク！.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "うちカク！.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BEC8B1424283289009CF8CA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		9BEC8B1724283289009CF8CA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		9BEC8B1A24283289009CF8CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		9BEC8B1C24283289009CF8CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BEC8B24242835C3009CF8CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
@@ -288,14 +267,6 @@
 				9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */,
 				9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */,
 				257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BEC8B1024283289009CF8CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BEC8B1524283289009CF8CA /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +494,6 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3131C783CAA0031F631 /* uchicock */,
-				9BEC8B1624283289009CF8CA /* uchicock Today */,
 				9BC9A3121C783CAA0031F631 /* Products */,
 				D62374FCD504BC5EA91FCD15 /* Frameworks */,
 				8AAB004EAA3CB436D4CF50BE /* Pods */,
@@ -534,7 +504,6 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3111C783CAA0031F631 /* uchicock.app */,
-				9BEC8B1324283289009CF8CA /* うちカク！.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -670,17 +639,6 @@
 			name = AlbumFilter;
 			sourceTree = "<group>";
 		};
-		9BEC8B1624283289009CF8CA /* uchicock Today */ = {
-			isa = PBXGroup;
-			children = (
-				9BEC8B1924283289009CF8CA /* MainInterface.storyboard */,
-				9BEC8B1724283289009CF8CA /* TodayViewController.swift */,
-				9BEC8B24242835C3009CF8CA /* Media.xcassets */,
-				9BEC8B1C24283289009CF8CA /* Info.plist */,
-			);
-			path = "uchicock Today";
-			sourceTree = "<group>";
-		};
 		9BF951A52302C68000C6A1CA /* MessageHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,29 +678,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				9BEC8B1E24283289009CF8CA /* PBXTargetDependency */,
 			);
 			name = uchicock;
 			productName = uchicock;
 			productReference = 9BC9A3111C783CAA0031F631 /* uchicock.app */;
 			productType = "com.apple.product-type.application";
-		};
-		9BEC8B1224283289009CF8CA /* uchicock Today */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Today" */;
-			buildPhases = (
-				9BEC8B0F24283289009CF8CA /* Sources */,
-				9BEC8B1024283289009CF8CA /* Frameworks */,
-				9BEC8B1124283289009CF8CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "uchicock Today";
-			productName = "uchicock Widget";
-			productReference = 9BEC8B1324283289009CF8CA /* うちカク！.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -758,11 +698,6 @@
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 98478E5868;
 						LastSwiftMigration = 1020;
-					};
-					9BEC8B1224283289009CF8CA = {
-						CreatedOnToolsVersion = 11.3.1;
-						DevelopmentTeam = 98478E5868;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -780,7 +715,6 @@
 			projectRoot = "";
 			targets = (
 				9BC9A3101C783CAA0031F631 /* uchicock */,
-				9BEC8B1224283289009CF8CA /* uchicock Today */,
 			);
 		};
 /* End PBXProject section */
@@ -820,15 +754,6 @@
 				9BEC4C432351ED51004FE9B4 /* Introduction.storyboard in Resources */,
 				9B77CA39247599190066349B /* SimilarRecipeCollectionViewCell.xib in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BEC8B1124283289009CF8CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BEC8B25242835C3009CF8CA /* Media.xcassets in Resources */,
-				9BEC8B1B24283289009CF8CA /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,34 +902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9BEC8B0F24283289009CF8CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BEC8B1824283289009CF8CA /* TodayViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9BEC8B1E24283289009CF8CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9BEC8B1224283289009CF8CA /* uchicock Today */;
-			targetProxy = 9BEC8B1D24283289009CF8CA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9BEC8B1924283289009CF8CA /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9BEC8B1A24283289009CF8CA /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9BC9A3371C783CAA0031F631 /* Debug */ = {
@@ -1119,12 +1017,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB9BC0F119F8CAA7EABB2D48 /* Pods-uchicock.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 98478E5868;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1147,12 +1044,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 98478E5868;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1164,64 +1060,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		9BEC8B2124283289009CF8CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
-				DEVELOPMENT_TEAM = 98478E5868;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "uchicock Today/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 8.2;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Today";
-				PRODUCT_NAME = "うちカク！";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9BEC8B2224283289009CF8CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
-				DEVELOPMENT_TEAM = 98478E5868;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "uchicock Today/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 8.2;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Today";
-				PRODUCT_NAME = "うちカク！";
-				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1244,15 +1082,6 @@
 			buildConfigurations = (
 				9BC9A33A1C783CAA0031F631 /* Debug */,
 				9BC9A33B1C783CAA0031F631 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Today" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9BEC8B2124283289009CF8CA /* Debug */,
-				9BEC8B2224283289009CF8CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

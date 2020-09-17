@@ -53,6 +53,41 @@
 	<string>レシピの写真を登録するために使います。</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>材料の購入予定をリマインダーに登録するために使います。</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>navigation-recipe-bookmark-off</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>ブックマーク</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>jp.kou.uchicock.bookmark</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>navigation-reminder-empty</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>購入リマインダー</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>jp.kou.uchicock.reminder</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>uchicock-album</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>アルバム</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>jp.kou.uchicock.album</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>settings-calc</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>度数計算機</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>jp.kou.uchicock.calc</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

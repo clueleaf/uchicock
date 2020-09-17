@@ -93,11 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool{
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+
         var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
-        
+
         var launchVC = getLaunchViewController()
         if launchVC == nil{
             launchVC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "launch") as? LaunchViewController
@@ -105,10 +106,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else if isLaunchViewControllerCurrentViewController() == false {
             launchVC!.dismiss(animated: false, completion: nil)
         }
-        launchVC!.todayWidgetUrl = url.absoluteString
-        return true
+        launchVC!.shortcutItemType = shortcutItem.type
     }
-
+    
     private func getLaunchViewController() -> LaunchViewController? {
         let rootVC = self.window!.rootViewController!
         return rootVC as? LaunchViewController

@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "svg2pdf_nm5dvdkG.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true,
+    "template-rendering-intent" : "template"
+  }
+}
