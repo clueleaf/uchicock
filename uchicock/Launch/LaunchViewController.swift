@@ -17,7 +17,7 @@ class LaunchViewController: UIViewController {
     var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
     var initializedFullScreenPopGesture = false
-    var widgetUrl: String? = nil
+    var todayWidgetUrl: String? = nil
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
@@ -36,7 +36,7 @@ class LaunchViewController: UIViewController {
             shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }else{
-            prepareMessage.alpha = widgetUrl == nil ? 1.0 : 0.0
+            prepareMessage.alpha = todayWidgetUrl == nil ? 1.0 : 0.0
         }
     }
     
@@ -53,7 +53,7 @@ class LaunchViewController: UIViewController {
     
     // MARK: - Processing
     private func prepareToShowRecipeList(){
-        prepareMessage.alpha = widgetUrl == nil ? 1.0 : 0.0
+        prepareMessage.alpha = todayWidgetUrl == nil ? 1.0 : 0.0
 
         let realm = try! Realm()
 
@@ -117,7 +117,7 @@ class LaunchViewController: UIViewController {
         tabBarC.modalTransitionStyle = .crossDissolve
 
         var index = 0
-        switch widgetUrl{
+        switch todayWidgetUrl{
         case "uchicock://bookmark":
             index = 0
             let navC = tabBarC.viewControllers![0] as! UINavigationController
@@ -144,7 +144,7 @@ class LaunchViewController: UIViewController {
         default:
             break
         }
-        widgetUrl = nil
+        todayWidgetUrl = nil
         tabBarC.selectedIndex = index
         tabBarC.lastSelectedIndex = index
 

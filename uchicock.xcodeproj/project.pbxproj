@@ -523,7 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3131C783CAA0031F631 /* uchicock */,
-				9BEC8B1624283289009CF8CA /* uchicock Widget */,
+				9BEC8B1624283289009CF8CA /* uchicock Today */,
 				9BC9A3121C783CAA0031F631 /* Products */,
 				D62374FCD504BC5EA91FCD15 /* Frameworks */,
 				8AAB004EAA3CB436D4CF50BE /* Pods */,
@@ -670,7 +670,7 @@
 			name = AlbumFilter;
 			sourceTree = "<group>";
 		};
-		9BEC8B1624283289009CF8CA /* uchicock Widget */ = {
+		9BEC8B1624283289009CF8CA /* uchicock Today */ = {
 			isa = PBXGroup;
 			children = (
 				9BEC8B1924283289009CF8CA /* MainInterface.storyboard */,
@@ -678,7 +678,7 @@
 				9BEC8B24242835C3009CF8CA /* Media.xcassets */,
 				9BEC8B1C24283289009CF8CA /* Info.plist */,
 			);
-			path = "uchicock Widget";
+			path = "uchicock Today";
 			sourceTree = "<group>";
 		};
 		9BF951A52302C68000C6A1CA /* MessageHUD */ = {
@@ -727,9 +727,9 @@
 			productReference = 9BC9A3111C783CAA0031F631 /* uchicock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9BEC8B1224283289009CF8CA /* uchicock Widget */ = {
+		9BEC8B1224283289009CF8CA /* uchicock Today */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Widget" */;
+			buildConfigurationList = 9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Today" */;
 			buildPhases = (
 				9BEC8B0F24283289009CF8CA /* Sources */,
 				9BEC8B1024283289009CF8CA /* Frameworks */,
@@ -739,7 +739,7 @@
 			);
 			dependencies = (
 			);
-			name = "uchicock Widget";
+			name = "uchicock Today";
 			productName = "uchicock Widget";
 			productReference = 9BEC8B1324283289009CF8CA /* うちカク！.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -780,7 +780,7 @@
 			projectRoot = "";
 			targets = (
 				9BC9A3101C783CAA0031F631 /* uchicock */,
-				9BEC8B1224283289009CF8CA /* uchicock Widget */,
+				9BEC8B1224283289009CF8CA /* uchicock Today */,
 			);
 		};
 /* End PBXProject section */
@@ -990,7 +990,7 @@
 /* Begin PBXTargetDependency section */
 		9BEC8B1E24283289009CF8CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9BEC8B1224283289009CF8CA /* uchicock Widget */;
+			target = 9BEC8B1224283289009CF8CA /* uchicock Today */;
 			targetProxy = 9BEC8B1D24283289009CF8CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1184,13 +1184,13 @@
 				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = 98478E5868;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "uchicock Widget/Info.plist";
+				INFOPLIST_FILE = "uchicock Today/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 8.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Today";
 				PRODUCT_NAME = "うちカク！";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1214,12 +1214,12 @@
 				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = 98478E5868;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "uchicock Widget/Info.plist";
+				INFOPLIST_FILE = "uchicock Today/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 8.2;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Today";
 				PRODUCT_NAME = "うちカク！";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1248,7 +1248,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Widget" */ = {
+		9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Today" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9BEC8B2124283289009CF8CA /* Debug */,

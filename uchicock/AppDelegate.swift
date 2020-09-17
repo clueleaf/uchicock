@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else if isLaunchViewControllerCurrentViewController() == false {
             launchVC!.dismiss(animated: false, completion: nil)
         }
-        launchVC!.widgetUrl = url.absoluteString
+        launchVC!.todayWidgetUrl = url.absoluteString
         return true
     }
 

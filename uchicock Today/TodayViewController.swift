@@ -1,6 +1,6 @@
 //
 //  TodayViewController.swift
-//  uchicock Widget
+//  uchicock Today
 //
 //  Created by Kou Kinyo on 2020-03-22.
 //  Copyright © 2020 Kou. All rights reserved.
