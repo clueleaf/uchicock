@@ -38,7 +38,7 @@
 * App Store： https://appsto.re/jp/l7pCbb
 
 #### バージョン履歴
-###### 2020-09-xx v8.2
+###### 2020-09-18 v8.2
 * iOS 14への対応
 * サポート対象をiOS 12.4以降に変更
 * Today ExtensionをHome Screen Quick Actionsに変更
