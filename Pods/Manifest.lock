@@ -1,9 +1,9 @@
 PODS:
-  - Realm (5.4.0):
-    - Realm/Headers (= 5.4.0)
-  - Realm/Headers (5.4.0)
-  - RealmSwift (5.4.0):
-    - Realm (= 5.4.0)
+  - Realm (5.4.1):
+    - Realm/Headers (= 5.4.1)
+  - Realm/Headers (5.4.1)
+  - RealmSwift (5.4.1):
+    - Realm (= 5.4.1)
 
 DEPENDENCIES:
   - RealmSwift
@@ -14,8 +14,8 @@ SPEC REPOS:
     - RealmSwift
 
 SPEC CHECKSUMS:
-  Realm: 8949757d76e2451a53d727954c607e49c2542b77
-  RealmSwift: 0b7d7121e842724188123c6086831ae6d2952050
+  Realm: 7e887608ef1de2d0c3a33dd9b1449e08fc9d9807
+  RealmSwift: ef998d9b678fd74e047c56ef4d99d9b77e87c1eb
 
 PODFILE CHECKSUM: a5f500c6140e4d7b54e0f38268ce9b4d866b0573
 
