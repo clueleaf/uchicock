@@ -33,6 +33,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         stockFlag: false
     )
     var ingredientList: Results<Ingredient>?
+    var isIngredientSelectable = true
 
     var editType = RecipeIngredientEditType.cancel
     var firstShow = false
@@ -127,6 +128,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     // MARK: - Logic functions
     private func reloadSuggestList(){
+        isIngredientSelectable = false
         suggestList.removeAll()
         
         let searchText = ingredientNameTextField.text!.withoutMiddleSpaceAndMiddleDot()
@@ -147,6 +149,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         suggestList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         suggestTableView.reloadData()
+        isIngredientSelectable = true
     }
 
     // MARK: - UITextFieldDelegate
@@ -271,6 +274,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             tableView.deselectRow(at: indexPath, animated: true)
         }else if tableView.tag == 1{
             tableView.deselectRow(at: indexPath, animated: true)
+            guard isIngredientSelectable else { return }
             ingredientNameTextField.text = suggestList[indexPath.row].name
             ingredientNameTextField.adjustClearButtonColor()
         }

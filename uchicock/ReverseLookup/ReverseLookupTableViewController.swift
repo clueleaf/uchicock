@@ -22,6 +22,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var ingredientList: Results<Ingredient>?
     var recipeBasicList = Array<RecipeBasic>()
     var ingredientSuggestList = Array<IngredientSuggestBasic>()
+    var isIngredientSelectable = true
     var selectedRecipeId: String? = nil
     let selectedCellBackgroundView = UIView()
 
@@ -624,6 +625,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func reloadIngredientSuggestList(text: String){
+        isIngredientSelectable = false
         ingredientSuggestList.removeAll()
         
         let searchText = text.withoutMiddleSpaceAndMiddleDot()
@@ -644,6 +646,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         ingredientSuggestList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         ingredientTableView.reloadData()
+        isIngredientSelectable = true
     }
     
     // MARK: - ScrollableToTop
@@ -791,6 +794,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }else if tableView.tag == 2{
             tableView.deselectRow(at: indexPath, animated: true)
+
+            guard isIngredientSelectable else { return }
+
             switch editingTextField{
             case 0: ingredientTextField1.text = ingredientSuggestList[indexPath.row].name
             case 1: ingredientTextField2.text = ingredientSuggestList[indexPath.row].name
