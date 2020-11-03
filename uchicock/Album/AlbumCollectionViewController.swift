@@ -248,12 +248,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     private func updateNavigationBar(){
         self.navigationItem.title = "アルバム(" + String(filteredRecipeBasicList.count) + "/" + String(recipeBasicList.count) + ")"
         if recipeBasicList.count == 0{
-            self.recipeNameBarButton.isEnabled = false
             self.albumFilterBarButton.isEnabled = false
+        }else{
+            self.albumFilterBarButton.isEnabled = true
+        }
+        if filteredRecipeBasicList.count == 0{
+            self.recipeNameBarButton.isEnabled = false
             self.orderBarButton.isEnabled = false
         }else{
             self.recipeNameBarButton.isEnabled = true
-            self.albumFilterBarButton.isEnabled = true
             self.orderBarButton.isEnabled = true
         }
     }
