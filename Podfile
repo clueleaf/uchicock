@@ -2,7 +2,7 @@ platform :ios, '12.4'
 use_frameworks!
 
 target 'uchicock' do
-    pod 'RealmSwift'
+    pod 'RealmSwift', '5.5.0'
 end
 
 post_install do | installer |
