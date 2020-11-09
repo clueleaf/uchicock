@@ -150,17 +150,10 @@ class LaunchViewController: UIViewController {
 
         // tabbarバッジ表示
         let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
-        let defaults = UserDefaults.standard
-        let version80newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
-        let version81newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version81NewRecipeViewedKey)
         if let tabItems = tabBarC.tabBar.items {
             let tabItem1 = tabItems[1]
             tabItem1.badgeColor = UchicockStyle.badgeBackgroundColor
             tabItem1.badgeValue = reminderNum == 0 ? nil : "!"
-
-            let tabItem4 = tabItems[4]
-            tabItem4.badgeColor = UchicockStyle.badgeBackgroundColor
-            tabItem4.badgeValue = (version80newRecipeViewed || version81newRecipeViewed) ? nil : "N"
         }
         
         self.present(tabBarC, animated: false, completion: nil)

@@ -22,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if manager.fileExists(atPath: realmPath.path) == false{
             let seedFilePath = Bundle.main.path(forResource: "default", ofType: "realm")
             try! manager.copyItem(atPath: seedFilePath!, toPath: realmPath.path)
-            let defaults = UserDefaults.standard
-            defaults.set(true, forKey: GlobalConstants.Version80NewRecipeViewedKey)
-            defaults.set(true, forKey: GlobalConstants.Version81NewRecipeViewedKey)
         }
 
         var config = Realm.Configuration(

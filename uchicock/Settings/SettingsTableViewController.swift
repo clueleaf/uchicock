@@ -17,7 +17,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     @IBOutlet weak var alcoholCalcImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
     @IBOutlet weak var currentImageSizeLabel: UILabel!
-    @IBOutlet weak var newRecipeLabel: UILabel!
     
     var selectedIndexPath: IndexPath? = nil
     var shouldRequestReview = false
@@ -61,7 +60,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         }else{
             currentImageSizeLabel.text = "中"
         }
-        setNewRecipeBadge()
         
         tableView.reloadData()
         
@@ -79,31 +77,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             tableView.deselectRow(at: path, animated: true)
         }
         selectedIndexPath = nil
-    }
-    
-    // MARK: - Logic functions
-    private func setNewRecipeBadge(){
-        let defaults = UserDefaults.standard
-        let version80newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
-        let version81newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version81NewRecipeViewedKey)
-        if let tabItems = self.tabBarController?.tabBar.items {
-            let tabItem = tabItems[4]
-            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if version80newRecipeViewed || version81newRecipeViewed{
-                tabItem.badgeValue = nil
-                newRecipeLabel.isHidden = true
-            }else{
-                tabItem.badgeValue = "N"
-                newRecipeLabel.isHidden = false
-                newRecipeLabel.backgroundColor = UIColor.clear
-                newRecipeLabel.layer.cornerRadius = 8
-                newRecipeLabel.clipsToBounds = true
-                newRecipeLabel.layer.borderWidth = 1
-                newRecipeLabel.layer.borderColor = UchicockStyle.alertColor.cgColor
-                newRecipeLabel.textColor = UIColor.white
-                newRecipeLabel.layer.backgroundColor = UchicockStyle.alertColor.cgColor
-            }
-        }
     }
     
     // MARK: - ScrollableToTop

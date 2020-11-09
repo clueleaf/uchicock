@@ -79,9 +79,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         
         tableView.register(UINib(nibName: "RecoverTableViewCell", bundle: nil), forCellReuseIdentifier: "RecoverCell")
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: GlobalConstants.Version81NewRecipeViewedKey)
     }
     
     // MARK: - Logic functions

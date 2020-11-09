@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -99,31 +99,20 @@
                                                         <constraint firstAttribute="width" constant="24" id="jzp-lF-O63"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hva-v7-V6a">
-                                                    <rect key="frame" x="252" y="22" width="38" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="ovt-bq-nKV"/>
-                                                        <constraint firstAttribute="width" constant="38" id="u2S-md-zE3"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="サンプルレシピを復元する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wL-Bg-17W" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="208" height="21"/>
+                                                    <rect key="frame" x="40" y="19.5" width="268" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9wL-Bg-17W" secondAttribute="trailing" constant="12" id="3hA-EK-LEQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="zzL-A5-2lO" secondAttribute="bottom" constant="18" id="6HI-gZ-5ob"/>
                                                 <constraint firstItem="zzL-A5-2lO" firstAttribute="leading" secondItem="7cU-um-5ZJ" secondAttribute="leading" constant="8" id="Bfs-le-IFx"/>
                                                 <constraint firstItem="9wL-Bg-17W" firstAttribute="centerY" secondItem="7cU-um-5ZJ" secondAttribute="centerY" id="EkP-qJ-2xj"/>
-                                                <constraint firstItem="hva-v7-V6a" firstAttribute="centerY" secondItem="9wL-Bg-17W" secondAttribute="centerY" id="Kts-2a-K12"/>
                                                 <constraint firstItem="9wL-Bg-17W" firstAttribute="leading" secondItem="zzL-A5-2lO" secondAttribute="trailing" constant="8" id="Zqn-YC-EZo"/>
                                                 <constraint firstItem="zzL-A5-2lO" firstAttribute="top" secondItem="7cU-um-5ZJ" secondAttribute="top" constant="18" id="mnM-A2-sCr"/>
-                                                <constraint firstItem="hva-v7-V6a" firstAttribute="leading" secondItem="9wL-Bg-17W" secondAttribute="trailing" constant="4" id="oqo-XR-3uT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -278,7 +267,6 @@
                         <outlet property="currentImageSizeLabel" destination="MFA-IT-qu5" id="hW6-ZR-uLn"/>
                         <outlet property="imageSizeImage" destination="MVo-5X-3zv" id="SMB-jh-YXE"/>
                         <outlet property="introductionImage" destination="qXs-tz-aBk" id="7a3-iq-XBm"/>
-                        <outlet property="newRecipeLabel" destination="hva-v7-V6a" id="WL4-4M-b0c"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>
                         <outlet property="reviewImage" destination="8jb-mE-tc4" id="gJg-bM-9Dl"/>
                         <segue destination="EyW-ad-CQ9" kind="presentation" identifier="usage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="H6Q-d3-WyA"/>
