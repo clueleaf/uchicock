@@ -11,10 +11,7 @@ import RealmSwift
 
 class LaunchViewController: UIViewController {
 
-    @IBOutlet weak var prepareMessage: UILabel!
-    
     var recipeList: Results<Recipe>?
-    var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
     var initializedFullScreenPopGesture = false
     var shortcutItemType: String? = nil
@@ -32,11 +29,8 @@ class LaunchViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0, GlobalConstants.FirstLaunchKey: true])
         if defaults.bool(forKey: GlobalConstants.FirstLaunchKey) {
-            prepareMessage.alpha = 0.0
             shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
-        }else{
-            prepareMessage.alpha = shortcutItemType == nil ? 1.0 : 0.0
         }
     }
     
@@ -53,8 +47,6 @@ class LaunchViewController: UIViewController {
     
     // MARK: - Processing
     private func prepareToShowRecipeList(){
-        prepareMessage.alpha = shortcutItemType == nil ? 1.0 : 0.0
-
         let realm = try! Realm()
 
         // DBに名前がないが存在する画像を削除する処理

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KzS-ee-6Ac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KzS-ee-6Ac">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -116,15 +117,6 @@
                                 <color key="textColor" red="0.76089900730000004" green="0.25649610160000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIO-vX-mWa">
-                                <rect key="frame" x="94.5" y="483.5" width="225.5" height="61"/>
-                                <string key="text">データ準備中...
-時間がかかる場合があります
-このままお待ちください</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お酒は楽しくほどほどに" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oB7-hD-8mm">
                                 <rect key="frame" x="123" y="848" width="168.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -132,10 +124,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aIO-vX-mWa" firstAttribute="top" secondItem="C7f-CM-Ndf" secondAttribute="bottom" constant="24" id="1Gl-rz-DV3"/>
-                            <constraint firstItem="aIO-vX-mWa" firstAttribute="centerX" secondItem="B56-iD-zki" secondAttribute="centerX" id="6gM-j2-WUc"/>
                             <constraint firstItem="C7f-CM-Ndf" firstAttribute="top" secondItem="TTh-88-J54" secondAttribute="bottom" constant="4" id="8hR-3S-Quh"/>
                             <constraint firstAttribute="bottom" secondItem="oB7-hD-8mm" secondAttribute="bottom" constant="30" id="GzI-yW-A4t"/>
                             <constraint firstAttribute="trailing" secondItem="ezn-Ow-6Ow" secondAttribute="trailing" id="Mmd-lY-IwM"/>
@@ -149,7 +139,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="prepareMessage" destination="aIO-vX-mWa" id="7fI-Qu-odW"/>
                         <segue destination="fBk-2U-rzj" kind="presentation" identifier="usage" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="pco-jF-4js"/>
                     </connections>
                 </viewController>
@@ -160,5 +149,8 @@
     </scenes>
     <resources>
         <image name="background-tequila-sunrise" width="1998" height="1998"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
