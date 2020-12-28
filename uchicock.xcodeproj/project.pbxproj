@@ -152,6 +152,7 @@
 		9B1E6BE7249FBF6B00A35AD1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9B22FEAB22A1872100D716E3 /* FlatColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlatColor.swift; path = Settings/FlatColor.swift; sourceTree = "<group>"; };
 		9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeImageSizeTableViewController.swift; path = Settings/ChangeImageSizeTableViewController.swift; sourceTree = "<group>"; };
+		9B2A3BBA2599B0D90090946B /* alcoholStrength.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = alcoholStrength.md; sourceTree = "<group>"; };
 		9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Util/Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
 		9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Util/Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
 		9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxController.swift; path = Util/CircularCheckbox/CircularCheckboxController.swift; sourceTree = "<group>"; };
@@ -314,6 +315,7 @@
 				9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */,
 				9B0E3DFE23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift */,
 				9BC4900F241E83170004843E /* AlcoholAmountTipViewController.swift */,
+				9B2A3BBA2599B0D90090946B /* alcoholStrength.md */,
 			);
 			path = AlcoholCalc;
 			sourceTree = "<group>";
