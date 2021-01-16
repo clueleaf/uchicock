@@ -894,6 +894,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     private func saveRecipe(){
         let realm = try! Realm()
+
+        let oldImageFileName = recipe.imageFileName
+        if let image = photoImageView.image{
+            let newImageFileName = NSUUID().uuidString
+            if ImageUtil.save(image: image, toFileName: newImageFileName){
+                try! realm.write {
+                    recipe.imageFileName = newImageFileName
+                }
+            }else{
+                let alertView = CustomAlertController(title: nil, message: "写真の保存に失敗しました。\n端末のデータ容量を空けてからもう一度試してみてください。", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
+                alertView.addAction(action)
+                alertView.modalPresentationCapturesStatusBarAppearance = true
+                present(alertView, animated: true, completion: nil)
+                return
+            }
+        }
+
         try! realm.write {
             if isAddMode { realm.add(recipe) }
             
@@ -925,13 +944,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             recipe.strength = strengthSegmentedControl.selectedSegmentIndex
             recipe.memo = memoTextView.text
             
-            let oldImageFileName = recipe.imageFileName
-            if let image = photoImageView.image{
-                let newImageFileName = NSUUID().uuidString
-                if ImageUtil.save(image: image, toFileName: newImageFileName){
-                    recipe.imageFileName = newImageFileName
-                }
-            }else{
+            if photoImageView.image == nil{
                 recipe.imageFileName = nil
             }
             ImageUtil.remove(imageFileName: oldImageFileName)
