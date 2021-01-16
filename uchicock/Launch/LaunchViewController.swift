@@ -47,6 +47,11 @@ class LaunchViewController: UIViewController {
     
     // MARK: - Processing
     private func prepareToShowRecipeList(){
+        guard LaunchControl.shared.copyFailure == false else {
+            performSegue(withIdentifier: "launchFailure", sender: nil)
+            return
+        }
+        
         let realm = try! Realm()
 
         // DBに名前がないが存在する画像を削除する処理

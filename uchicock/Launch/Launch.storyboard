@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KzS-ee-6Ac">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KzS-ee-6Ac">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -82,13 +82,65 @@
             </objects>
             <point key="canvasLocation" x="-3513" y="2067"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="bxA-hX-75V">
+            <objects>
+                <viewController id="fQX-1P-Gm0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G0P-dT-Hv9"/>
+                        <viewControllerLayoutGuide type="bottom" id="t5O-Q2-iUM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OOB-wL-4VB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-tequila-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="rye-IU-dEm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmf-XW-6Hc">
+                                <rect key="frame" x="22.5" y="248" width="275.5" height="72"/>
+                                <string key="text">初期データの用意に失敗しました。
+
+端末のストレージ容量を空けてから
+このアプリを再起動してみてください。</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="jiV-yy-ukf">
+                                <rect key="frame" x="135" y="168" width="50" height="50"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="UUl-WU-qe5"/>
+                                    <constraint firstAttribute="height" constant="50" id="X17-Fs-ugv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="rye-IU-dEm" secondAttribute="bottom" id="Dog-w1-U1D"/>
+                            <constraint firstItem="Bmf-XW-6Hc" firstAttribute="centerY" secondItem="rye-IU-dEm" secondAttribute="centerY" id="FBn-6o-d0I"/>
+                            <constraint firstAttribute="trailing" secondItem="rye-IU-dEm" secondAttribute="trailing" id="Ygn-1H-Zqa"/>
+                            <constraint firstItem="Bmf-XW-6Hc" firstAttribute="centerX" secondItem="rye-IU-dEm" secondAttribute="centerX" id="jam-Wd-rjr"/>
+                            <constraint firstItem="rye-IU-dEm" firstAttribute="leading" secondItem="OOB-wL-4VB" secondAttribute="leading" id="kem-sV-Gjz"/>
+                            <constraint firstItem="Bmf-XW-6Hc" firstAttribute="top" secondItem="jiV-yy-ukf" secondAttribute="bottom" constant="30" id="m1h-6O-Ruh"/>
+                            <constraint firstItem="rye-IU-dEm" firstAttribute="top" secondItem="OOB-wL-4VB" secondAttribute="top" id="oJl-f6-LFg"/>
+                            <constraint firstItem="jiV-yy-ukf" firstAttribute="centerX" secondItem="rye-IU-dEm" secondAttribute="centerX" id="qJS-lL-ujA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Lyq-Rn-yu9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0Z-4T-5DB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4255" y="2564"/>
+        </scene>
         <!--Introduction-->
         <scene sceneID="vQg-Fy-IEi">
             <objects>
                 <viewControllerPlaceholder storyboardName="Introduction" id="fBk-2U-rzj" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSm-xS-Iev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5034" y="2273"/>
+            <point key="canvasLocation" x="-5012" y="2679"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="eQd-bv-Odn">
@@ -99,26 +151,26 @@
                         <viewControllerLayoutGuide type="bottom" id="nCM-AS-ZJM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B56-iD-zki">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-tequila-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="ezn-Ow-6Ow">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="うちカク!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTh-88-J54">
-                                <rect key="frame" x="141" y="396.5" width="132" height="36"/>
+                                <rect key="frame" x="94" y="232.5" width="132" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ouchi Cocktail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7f-CM-Ndf">
-                                <rect key="frame" x="145.5" y="436.5" width="123" height="23"/>
+                                <rect key="frame" x="98.5" y="272.5" width="123" height="23"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                 <color key="textColor" red="0.76089900730000004" green="0.25649610160000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お酒は楽しくほどほどに" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oB7-hD-8mm">
-                                <rect key="frame" x="123" y="848" width="168.5" height="18"/>
+                                <rect key="frame" x="76" y="520" width="168.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -140,15 +192,17 @@
                     </view>
                     <connections>
                         <segue destination="fBk-2U-rzj" kind="presentation" identifier="usage" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="pco-jF-4js"/>
+                        <segue destination="fQX-1P-Gm0" kind="presentation" identifier="launchFailure" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="xPi-Oc-16G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zIs-ox-wPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5034.5070422535209" y="1839.375"/>
+            <point key="canvasLocation" x="-5014" y="2227"/>
         </scene>
     </scenes>
     <resources>
         <image name="background-tequila-sunrise" width="1998" height="1998"/>
+        <image name="warning" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

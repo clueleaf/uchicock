@@ -54,6 +54,7 @@
 		9B41B2AA1E65729E00EF2CEF /* UchicockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* UchicockStyle.swift */; };
 		9B523FD924A30EC600830C51 /* CalcBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B523FD824A30EC600830C51 /* CalcBasic.swift */; };
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
+		9B61739525B38321006C3CD2 /* LaunchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B61739425B38321006C3CD2 /* LaunchControl.swift */; };
 		9B63E0AA230E8F78004E6B50 /* ImageViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
 		9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */; };
@@ -186,6 +187,7 @@
 		9B41B2A91E65729E00EF2CEF /* UchicockStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UchicockStyle.swift; path = Settings/UchicockStyle.swift; sourceTree = "<group>"; };
 		9B523FD824A30EC600830C51 /* CalcBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcBasic.swift; sourceTree = "<group>"; };
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		9B61739425B38321006C3CD2 /* LaunchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchControl.swift; sourceTree = "<group>"; };
 		9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ImageViewer.storyboard; path = Util/ImageViewer/ImageViewer.storyboard; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeBasic.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		9B1638BB22A7E17000B7C3A7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				9B61739425B38321006C3CD2 /* LaunchControl.swift */,
 				9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */,
 				9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */,
 				9BB12BB32344E9EB005EB43F /* UIImageExtension.swift */,
@@ -838,6 +841,7 @@
 				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
+				9B61739525B38321006C3CD2 /* LaunchControl.swift in Sources */,
 				9B0AEBD923FA407B00EEA4F9 /* StrengthTipViewController.swift in Sources */,
 				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
 				9B2E83E6230A9F7A002E7946 /* ImageViewerController.swift in Sources */,

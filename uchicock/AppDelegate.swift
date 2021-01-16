@@ -21,7 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // first time to launch this app
         if manager.fileExists(atPath: realmPath.path) == false{
             let seedFilePath = Bundle.main.path(forResource: "default", ofType: "realm")
-            try! manager.copyItem(atPath: seedFilePath!, toPath: realmPath.path)
+            do{
+                try manager.copyItem(atPath: seedFilePath!, toPath: realmPath.path)
+            }catch{
+                LaunchControl.shared.copyFailure = true
+            }
         }
 
         var config = Realm.Configuration(
