@@ -35,7 +35,7 @@ import Realm.Private
 ///
 /// You can also manually conform to `Identifiable` if you wish, but note that
 /// using the object's memory address does *not* work for managed objects.
-public protocol ObjectKeyIdentifiable: Identifiable, Object {
+public protocol ObjectKeyIdentifiable: Identifiable, ObjectBase {
     /// The stable identity of the entity associated with `self`.
     var id: UInt64 { get }
 }
@@ -89,7 +89,7 @@ extension Publisher {
     /// ```
     ///
     /// - returns: A publisher that publishes frozen copies of the objects which the upstream publisher publishes.
-    public func freeze<T>() -> Combine.Publishers.Map<Self, T> where Output: ThreadConfined, T == Output {
+    public func freeze<T>() -> Publishers.Map<Self, T> where Output: ThreadConfined, T == Output {
         return map { $0.freeze() }
     }
 
@@ -116,7 +116,7 @@ extension Publisher {
     ///
     /// - returns: A publisher that publishes frozen copies of the changesets
     ///            which the upstream publisher publishes.
-    public func freeze<T: Object>() -> Combine.Publishers.Map<Self, ObjectChange<T>> where Output == ObjectChange<T> {
+    public func freeze<T: Object>() -> Publishers.Map<Self, ObjectChange<T>> where Output == ObjectChange<T> {
         return map {
             if case .change(let object, let properties) = $0 {
                 return .change(object.freeze(), properties)
@@ -149,7 +149,7 @@ extension Publisher {
     /// - returns: A publisher that publishes frozen copies of the changesets
     ///            which the upstream publisher publishes.
     public func freeze<T: RealmCollection>()
-        -> Combine.Publishers.Map<Self, RealmCollectionChange<T>> where Output == RealmCollectionChange<T> {
+        -> Publishers.Map<Self, RealmCollectionChange<T>> where Output == RealmCollectionChange<T> {
             return map {
                 switch $0 {
                 case .initial(let collection):
@@ -190,8 +190,8 @@ extension Publisher where Output: ThreadConfined {
     /// objects is unneccesary but is allowed.
     ///
     /// - returns: A publisher that supports `receive(on:)` for thread-confined objects.
-    public func threadSafeReference() -> Publishers.MakeThreadSafe<Self> {
-        Publishers.MakeThreadSafe(self)
+    public func threadSafeReference() -> RealmPublishers.MakeThreadSafe<Self> {
+        RealmPublishers.MakeThreadSafe(self)
     }
 }
 
@@ -220,8 +220,8 @@ extension Publisher {
     ///
     /// - returns: A publisher that supports `receive(on:)` for thread-confined objects.
     public func threadSafeReference<T: Object>()
-        -> Publishers.MakeThreadSafeObjectChangeset<Self, T> where Output == ObjectChange<T> {
-            Publishers.MakeThreadSafeObjectChangeset(self)
+        -> RealmPublishers.MakeThreadSafeObjectChangeset<Self, T> where Output == ObjectChange<T> {
+        RealmPublishers.MakeThreadSafeObjectChangeset(self)
     }
     /// Enables passing Realm collection changesets to a different dispatch queue.
     ///
@@ -246,8 +246,8 @@ extension Publisher {
     ///
     /// - returns: A publisher that supports `receive(on:)` for thread-confined objects.
     public func threadSafeReference<T: RealmCollection>()
-        -> Publishers.MakeThreadSafeCollectionChangeset<Self, T> where Output == RealmCollectionChange<T> {
-            Publishers.MakeThreadSafeCollectionChangeset(self)
+        -> RealmPublishers.MakeThreadSafeCollectionChangeset<Self, T> where Output == RealmCollectionChange<T> {
+        RealmPublishers.MakeThreadSafeCollectionChangeset(self)
     }
 }
 
@@ -256,24 +256,24 @@ extension RealmCollection where Self: RealmSubscribable {
     /// A publisher that emits Void each time the collection changes.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public var objectWillChange: Publishers.WillChange<Self> {
-        Publishers.WillChange(self)
+    public var objectWillChange: RealmPublishers.WillChange<Self> {
+        RealmPublishers.WillChange(self)
     }
 
     /// :nodoc:
     @available(*, deprecated, renamed: "collectionPublisher")
-    public var publisher: Publishers.Value<Self> {
-        Publishers.Value(self)
+    public var publisher: RealmPublishers.Value<Self> {
+        RealmPublishers.Value(self)
     }
 
     /// A publisher that emits the collection each time the collection changes.
-    public var collectionPublisher: Publishers.Value<Self> {
-        Publishers.Value(self)
+    public var collectionPublisher: RealmPublishers.Value<Self> {
+        RealmPublishers.Value(self)
     }
 
     /// A publisher that emits a collection changeset each time the collection changes.
-    public var changesetPublisher: Publishers.CollectionChangeset<Self> {
-        Publishers.CollectionChangeset(self)
+    public var changesetPublisher: RealmPublishers.CollectionChangeset<Self> {
+        RealmPublishers.CollectionChangeset(self)
     }
 }
 
@@ -283,8 +283,8 @@ extension RealmCollection where Self: RealmSubscribable {
 /// - parameter object: A managed object to observe.
 /// - returns: A publisher that emits the object each time it changes.
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-public func valuePublisher<T: Object>(_ object: T) -> Publishers.Value<T> {
-    Publishers.Value<T>(object)
+public func valuePublisher<T: Object>(_ object: T) -> RealmPublishers.Value<T> {
+    RealmPublishers.Value<T>(object)
 }
 
 /// Creates a publisher that emits the collection each time the collection changes.
@@ -293,8 +293,8 @@ public func valuePublisher<T: Object>(_ object: T) -> Publishers.Value<T> {
 /// - parameter object: A managed collection to observe.
 /// - returns: A publisher that emits the collection each time it changes.
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-public func valuePublisher<T: RealmCollection>(_ collection: T) -> Publishers.Value<T> {
-    Publishers.Value<T>(collection)
+public func valuePublisher<T: RealmCollection>(_ collection: T) -> RealmPublishers.Value<T> {
+    RealmPublishers.Value<T>(collection)
 }
 
 /// Creates a publisher that emits an object changeset each time the object changes.
@@ -303,8 +303,8 @@ public func valuePublisher<T: RealmCollection>(_ collection: T) -> Publishers.Va
 /// - parameter object: A managed object to observe.
 /// - returns: A publisher that emits an object changeset each time the object changes.
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-public func changesetPublisher<T: Object>(_ object: T) -> Publishers.ObjectChangeset<T> {
-    Publishers.ObjectChangeset<T>(object)
+public func changesetPublisher<T: Object>(_ object: T) -> RealmPublishers.ObjectChangeset<T> {
+    RealmPublishers.ObjectChangeset<T>(object)
 }
 
 /// Creates a publisher that emits a collection changeset each time the collection changes.
@@ -313,8 +313,8 @@ public func changesetPublisher<T: Object>(_ object: T) -> Publishers.ObjectChang
 /// - parameter object: A managed collection to observe.
 /// - returns: A publisher that emits a collection changeset each time the collection changes.
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-public func changesetPublisher<T: RealmCollection>(_ collection: T) -> Publishers.CollectionChangeset<T> {
-    Publishers.CollectionChangeset<T>(collection)
+public func changesetPublisher<T: RealmCollection>(_ collection: T) -> RealmPublishers.CollectionChangeset<T> {
+    RealmPublishers.CollectionChangeset<T>(collection)
 }
 
 // MARK: - Realm
@@ -324,20 +324,20 @@ extension Realm {
     /// A publisher that emits Void each time the object changes.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public var objectWillChange: Publishers.RealmWillChange {
-        return Publishers.RealmWillChange(self)
+    public var objectWillChange: RealmPublishers.RealmWillChange {
+        return RealmPublishers.RealmWillChange(self)
     }
 }
 
 // MARK: - Object
 
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-extension Object: Combine.ObservableObject {
+extension Object: ObservableObject {
     /// A publisher that emits Void each time the object changes.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public var objectWillChange: Publishers.WillChange<Object> {
-        return Publishers.WillChange(self)
+    public var objectWillChange: RealmPublishers.WillChange<Object> {
+        return RealmPublishers.WillChange(self)
     }
 }
 
@@ -372,8 +372,8 @@ extension List: ObservableObject, RealmSubscribable {
     /// A publisher that emits Void each time the collection changes.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public var objectWillChange: Publishers.WillChange<List> {
-        Publishers.WillChange(self)
+    public var objectWillChange: RealmPublishers.WillChange<List> {
+        RealmPublishers.WillChange(self)
     }
 }
 
@@ -384,8 +384,8 @@ extension LinkingObjects: RealmSubscribable {
     /// A publisher that emits Void each time the collection changes.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public var objectWillChange: Publishers.WillChange<LinkingObjects> {
-        Publishers.WillChange(self)
+    public var objectWillChange: RealmPublishers.WillChange<LinkingObjects> {
+        RealmPublishers.WillChange(self)
     }
 }
 
@@ -396,8 +396,8 @@ extension Results: RealmSubscribable {
     /// A publisher that emits Void each time the collection changes.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public var objectWillChange: Publishers.WillChange<Results> {
-        Publishers.WillChange(self)
+    public var objectWillChange: RealmPublishers.WillChange<Results> {
+        RealmPublishers.WillChange(self)
     }
 }
 
@@ -436,7 +436,7 @@ extension AnyRealmCollection: RealmSubscribable {
 
 /// A subscription which wraps a Realm notification.
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-public struct ObservationSubscription: Subscription {
+@frozen public struct ObservationSubscription: Subscription {
     private var token: NotificationToken
     internal init(token: NotificationToken) {
         self.token = token
@@ -459,6 +459,37 @@ public struct ObservationSubscription: Subscription {
     }
 }
 
+/// A subscription which wraps a Realm AsyncOpenTask.
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+@frozen public struct AsyncOpenSubscription: Subscription {
+    private let task: Realm.AsyncOpenTask
+
+    internal init(task: Realm.AsyncOpenTask,
+                  callbackQueue: DispatchQueue,
+                  onProgressNotificationCallback: ((SyncSession.Progress) -> Void)?) {
+        self.task = task
+        if let onProgressNotificationCallback = onProgressNotificationCallback {
+            self.task.addProgressNotification(queue: callbackQueue, block: onProgressNotificationCallback)
+        }
+    }
+
+    /// A unique identifier for identifying publisher streams.
+    public var combineIdentifier: CombineIdentifier {
+        return CombineIdentifier(task.rlmTask)
+    }
+
+    /// This function is not implemented.
+    ///
+    /// Realm publishers do not support backpressure and so this function does nothing.
+    public func request(_ demand: Subscribers.Demand) {
+    }
+
+    /// Stop emitting values on this subscription.
+    public func cancel() {
+        task.cancel()
+    }
+}
+
 // MARK: Publishers
 
 /// Combine publishers for Realm types.
@@ -466,15 +497,72 @@ public struct ObservationSubscription: Subscription {
 /// You normally should not create any of these types directly, and should
 /// instead use the extension methods which create them.
 @available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
-public enum Publishers {
+public enum RealmPublishers {
     static private func realm<S: Scheduler>(_ config: RLMRealmConfiguration, _ scheduler: S) -> Realm? {
         try? Realm(RLMRealm(configuration: config, queue: scheduler as? DispatchQueue))
+    }
+
+    /// A publisher which emits an asynchronously opened Realm.
+    @frozen public struct AsyncOpenPublisher: Publisher {
+        /// This publisher can fail if there is an error opening the Realm.
+        public typealias Failure = Error
+        /// This publisher emits an opened Realm.
+        public typealias Output = Realm
+
+        private let configuration: Realm.Configuration
+        private let callbackQueue: DispatchQueue
+        private let onProgressNotificationCallback: ((SyncSession.Progress) -> Void)?
+
+        internal init(configuration: Realm.Configuration,
+                      callbackQueue: DispatchQueue = .main,
+                      onProgressNotificationCallback: ((SyncSession.Progress) -> Void)? = nil) {
+            self.configuration = configuration
+            self.callbackQueue = callbackQueue
+            self.onProgressNotificationCallback = onProgressNotificationCallback
+        }
+
+        /// Triggers an event when there is a notification on the async open progress.
+        ///
+        /// This should be called directly after invoking the publisher.
+        ///
+        /// - Parameter onProgressNotificationCallback: Callback which will be invoked when there is an update on progress.
+        /// - Returns: A publisher that emits an asynchronously opened Realm.
+        public func onProgressNotification(_ onProgressNotificationCallback: @escaping ((SyncSession.Progress) -> Void)) -> Self {
+            Self(configuration: configuration,
+                 callbackQueue: callbackQueue,
+                 onProgressNotificationCallback: onProgressNotificationCallback)
+        }
+
+        /// :nodoc:
+        public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, Output == S.Input {
+            subscriber.receive(subscription: AsyncOpenSubscription(task: Realm.AsyncOpenTask(rlmTask: RLMRealm.asyncOpen(with: configuration.rlmConfiguration, callbackQueue: callbackQueue, callback: { rlmRealm, error in
+                if let realm = rlmRealm.flatMap(Realm.init) {
+                    _ = subscriber.receive(realm)
+                } else {
+                    subscriber.receive(completion: .failure(error ?? Realm.Error.callFailed))
+                }
+            })), callbackQueue: callbackQueue, onProgressNotificationCallback: onProgressNotificationCallback))
+        }
+
+        /// Specifies the scheduler on which to perform the async open task.
+        ///
+        /// - parameter scheduler: The serial dispatch queue to receive values on.
+        /// - returns: A publisher which delivers values to the given scheduler.
+        public func receive<S: Scheduler>(on scheduler: S) -> Self {
+            guard let queue = scheduler as? DispatchQueue else {
+                fatalError("Cannot subscribe on scheduler \(scheduler): only serial dispatch queues are currently implemented.")
+            }
+
+            return Self(configuration: configuration,
+                        callbackQueue: queue,
+                        onProgressNotificationCallback: onProgressNotificationCallback)
+        }
     }
 
     /// A publisher which emits Void each time the Realm is refreshed.
     ///
     /// Despite the name, this actually emits *after* the Realm is refreshed.
-    public struct RealmWillChange: Publisher {
+    @frozen public struct RealmWillChange: Publisher {
         /// This publisher cannot fail.
         public typealias Failure = Never
         /// This publisher emits Void.
@@ -543,7 +631,7 @@ public enum Publishers {
     /// A publisher which emits Void each time the object is mutated.
     ///
     /// Despite the name, this actually emits *after* the collection has changed.
-    public struct WillChange<Collection: RealmSubscribable>: Publisher where Collection: ThreadConfined {
+    @frozen public struct WillChange<Collection: RealmSubscribable>: Publisher where Collection: ThreadConfined {
         /// This publisher cannot fail.
         public typealias Failure = Never
         /// This publisher emits Void.
@@ -609,7 +697,7 @@ public enum Publishers {
     }
 
     /// A publisher which emits an object or collection each time that object is mutated.
-    public struct Value<Subscribable: RealmSubscribable>: Publisher where Subscribable: ThreadConfined {
+    @frozen public struct Value<Subscribable: RealmSubscribable>: Publisher where Subscribable: ThreadConfined {
         /// This publisher can only fail due to resource exhaustion when
         /// creating the worker thread used for change notifications.
         public typealias Failure = Error
@@ -676,8 +764,8 @@ public enum Publishers {
         ///
         /// - parameter scheduler: The serial dispatch queue to receive values on.
         /// - returns: A publisher which delivers values to the given scheduler.
-        public func receive<S: Scheduler>(on scheduler: S) -> Publishers.Handover<Self, S> {
-            return Publishers.Handover(self, scheduler, self.subscribable.realm!)
+        public func receive<S: Scheduler>(on scheduler: S) -> RealmPublishers.Handover<Self, S> {
+            return Handover(self, scheduler, self.subscribable.realm!)
         }
     }
 
@@ -748,13 +836,13 @@ public enum Publishers {
         ///
         /// - parameter scheduler: The serial dispatch queue to receive values on.
         /// - returns: A publisher which delivers values to the given scheduler.
-        public func receive<S: Scheduler>(on scheduler: S) -> Publishers.Handover<ValueWithToken, S> {
-            return Publishers.Handover(self, scheduler, self.object.realm!)
+        public func receive<S: Scheduler>(on scheduler: S) -> Handover<ValueWithToken, S> {
+            return Handover(self, scheduler, self.object.realm!)
         }
     }
 
     /// A helper publisher used to support `receive(on:)` on Realm publishers.
-    public struct Handover<Upstream: Publisher, S: Scheduler>: Publisher where Upstream.Output: ThreadConfined {
+    @frozen public struct Handover<Upstream: Publisher, S: Scheduler>: Publisher where Upstream.Output: ThreadConfined {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -785,7 +873,7 @@ public enum Publishers {
     /// A publisher which makes `receive(on:)` work for streams of thread-confined objects
     ///
     /// Create using .threadSafeReference()
-    public struct MakeThreadSafe<Upstream: Publisher>: Publisher where Upstream.Output: ThreadConfined {
+    @frozen public struct MakeThreadSafe<Upstream: Publisher>: Publisher where Upstream.Output: ThreadConfined {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -818,7 +906,7 @@ public enum Publishers {
     ///
     /// Create using `.threadSafeReference().receive(on: queue)` on a publisher
     /// that emits thread-confined objects.
-    public struct DeferredHandover<Upstream: Publisher, S: Scheduler>: Publisher where Upstream.Output: ThreadConfined {
+    @frozen public struct DeferredHandover<Upstream: Publisher, S: Scheduler>: Publisher where Upstream.Output: ThreadConfined {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -865,7 +953,7 @@ public enum Publishers {
     /// should always be the first operation in the pipeline.
     ///
     /// Create this publisher using the `objectChangeset()` function.
-    public struct ObjectChangeset<O: Object>: Publisher {
+    @frozen public struct ObjectChangeset<O: Object>: Publisher {
         /// This publisher emits a ObjectChange<T> indicating which object and
         /// which properties of that object have changed each time a Realm is
         /// refreshed after a write transaction which modifies the observed
@@ -1042,7 +1130,7 @@ public enum Publishers {
     }
 
     /// A helper publisher created by calling `.threadSafeReference()` on a publisher which emits thread-confined values.
-    public struct MakeThreadSafeObjectChangeset<Upstream: Publisher, T: Object>: Publisher where Upstream.Output == ObjectChange<T> {
+    @frozen public struct MakeThreadSafeObjectChangeset<Upstream: Publisher, T: Object>: Publisher where Upstream.Output == ObjectChange<T> {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -1082,7 +1170,7 @@ public enum Publishers {
     ///
     /// Create using `.threadSafeReference().receive(on: queue)` on a publisher
     /// that emits `ObjectChange`.
-    public struct DeferredHandoverObjectChangeset<Upstream: Publisher, T: Object, S: Scheduler>: Publisher where Upstream.Output == ObjectChange<T> {
+    @frozen public struct DeferredHandoverObjectChangeset<Upstream: Publisher, T: Object, S: Scheduler>: Publisher where Upstream.Output == ObjectChange<T> {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -1133,10 +1221,10 @@ public enum Publishers {
     /// there is an intermediate transform. If `subscribe(on:)` is used, it
     /// should always be the first operation in the pipeline.
     ///
-    /// Create this publisher using the `changesetPublisher` property on RealmCollection..
-    public struct CollectionChangeset<Collection: RealmCollection>: Publisher {
+    /// Create this publisher using the `changesetPublisher` property on RealmCollection.
+    @frozen public struct CollectionChangeset<Collection: RealmCollection>: Publisher {
         public typealias Output = RealmCollectionChange<Collection>
-        /// This publisher reports error via the `.error` case of RealmCollectionChange..
+        /// This publisher reports error via the `.error` case of RealmCollectionChange.
         public typealias Failure = Never
 
         private let collection: Collection
@@ -1214,10 +1302,10 @@ public enum Publishers {
     /// there is an intermediate transform. If `subscribe(on:)` is used, it
     /// should always be the first operation in the pipeline.
     ///
-    /// Create this publisher using the `changesetPublisher` property on RealmCollection..
+    /// Create this publisher using the `changesetPublisher` property on RealmCollection.
     public class CollectionChangesetWithToken<Collection: RealmCollection, T>: Publisher {
         public typealias Output = RealmCollectionChange<Collection>
-        /// This publisher reports error via the `.error` case of RealmCollectionChange..
+        /// This publisher reports error via the `.error` case of RealmCollectionChange.
         public typealias Failure = Never
 
         internal typealias TokenParent = T
@@ -1288,7 +1376,7 @@ public enum Publishers {
 
     /// A helper publisher created by calling `.threadSafeReference()` on a
     /// publisher which emits `RealmCollectionChange`.
-    public struct MakeThreadSafeCollectionChangeset<Upstream: Publisher, T: RealmCollection>: Publisher where Upstream.Output == RealmCollectionChange<T> {
+    @frozen public struct MakeThreadSafeCollectionChangeset<Upstream: Publisher, T: RealmCollection>: Publisher where Upstream.Output == RealmCollectionChange<T> {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -1322,7 +1410,7 @@ public enum Publishers {
     ///
     /// Create using `.threadSafeReference().receive(on: queue)` on a publisher
     /// that emits `RealmCollectionChange`.
-    public struct DeferredHandoverCollectionChangeset<Upstream: Publisher, T: RealmCollection, S: Scheduler>: Publisher where Upstream.Output == RealmCollectionChange<T> {
+    @frozen public struct DeferredHandoverCollectionChangeset<Upstream: Publisher, T: RealmCollection, S: Scheduler>: Publisher where Upstream.Output == RealmCollectionChange<T> {
         /// :nodoc:
         public typealias Failure = Upstream.Failure
         /// :nodoc:
@@ -1378,5 +1466,4 @@ public enum Publishers {
         }
     }
 }
-
 #endif // canImport(Combine)
