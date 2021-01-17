@@ -903,7 +903,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     recipe.imageFileName = newImageFileName
                 }
             }else{
-                let alertView = CustomAlertController(title: nil, message: "写真の保存に失敗しました。\n端末のデータ容量を空けてからもう一度試してみてください。", preferredStyle: .alert)
+                let alertView = CustomAlertController(title: nil, message: "写真を保存できません。\n端末のストレージ容量を空けてからもう一度試してみてください。", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default)
                 if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 alertView.addAction(action)
