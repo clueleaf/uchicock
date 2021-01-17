@@ -199,7 +199,6 @@
 		9B77CA37247599190066349B /* SimilarRecipeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SimilarRecipeCollectionViewCell.xib; path = RecipeDetail/SimilarRecipeCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AlbumCollectionViewCell.xib; path = Album/AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
-		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9B93B31A1E75437C0046687A /* ReverseLookupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupTableViewController.swift; path = ReverseLookup/ReverseLookupTableViewController.swift; sourceTree = "<group>"; };
 		9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientTableViewCell.swift; path = ReverseLookup/ReverseLookupSelectIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B9A7D9D240AC05700BC46DE /* FullScreenPopGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPopGesture.swift; sourceTree = "<group>"; };
@@ -255,7 +254,6 @@
 		9BEC4C3D2351EC9B004FE9B4 /* AlbumFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumFilterViewController.swift; path = AlbumFilter/AlbumFilterViewController.swift; sourceTree = "<group>"; };
 		9BEC4C402351ECF1004FE9B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Settings/Settings.storyboard; sourceTree = "<group>"; };
 		9BEC4C422351ED51004FE9B4 /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Introduction.storyboard; path = Util/Introduction/Introduction.storyboard; sourceTree = "<group>"; };
-		9BEC8B1424283289009CF8CA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
@@ -658,9 +656,7 @@
 			children = (
 				9BEF8B281E68739400F32DDB /* Realm.framework */,
 				9BEF8B261E68738E00F32DDB /* RealmSwift.framework */,
-				9B8E59D11CB819A8004D2C1A /* Social.framework */,
 				7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */,
-				9BEC8B1424283289009CF8CA /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1027,7 +1023,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 98478E5868;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1054,7 +1050,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 98478E5868;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
